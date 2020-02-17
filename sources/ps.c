@@ -1,5 +1,27 @@
 #include "../includes/push_swap.h"
 
+void ft_overflow_argument(const char *str)
+{
+	if (ft_strcmp(INT_MAX_STR, str) < 0)
+	{
+		ft_putstr("Error\n");
+		exit(0);
+	}
+	if (str[0] == '+')
+	{
+		if (ft_strcmp(INT_MAX_STR, str + 1) < 0)
+		{
+			ft_putstr("Error\n");
+			exit(0);
+		}
+	}
+	if (ft_strcmp(INT_MIN_STR, str + 1) <0)
+	{
+		ft_putstr("Error\n");
+		exit(0);
+	}
+}
+
 void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 {
 	int i;
@@ -11,6 +33,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 		str_arr = ft_strsplit(av[1], ' ');
 		while (str_arr[i])
 		{
+			ft_overflow_argument(str_arr[i]);
 			temp = ft_atoi(str_arr[i]);
 			ft_lstadd(&stackes->stack_a, ft_lstnew(&temp, sizeof(int)));
 			i++;
@@ -18,6 +41,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 	}
 	while (++i < ac)
 	{
+		ft_overflow_argument(av[i]);
 		temp = ft_atoi(av[i]);
 		ft_lstadd(&stackes->stack_a, ft_lstnew(&temp, sizeof(int)));
 	}
