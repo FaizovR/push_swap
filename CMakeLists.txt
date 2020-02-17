@@ -11,4 +11,7 @@ file (GLOB PUSH_SWAP
 
 add_executable(push_swap
         sources/ps.c
+        sources/parser.c
         )
+
+target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)
