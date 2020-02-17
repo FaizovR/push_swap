@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void ft_add_to_stack(int ac, char **av, t_stack *stackes)
+void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 {
 	int i;
 	int temp;
@@ -23,7 +23,7 @@ void ft_add_to_stack(int ac, char **av, t_stack *stackes)
 	}
 }
 
-void ft_print_list(t_stack *stackes)
+void ft_print_list (t_stack *stackes)
 {
 	t_list *node;
 	node = stackes->stack_a;
@@ -53,6 +53,27 @@ void ft_reverse_stack (t_stack *stacks)
 	stacks->stack_a = prev;
 }
 
+void ft_has_duplicate (t_stack *stackes)
+{
+	t_list *node;
+	t_list *tmp;
+	node = stackes->stack_a;
+	while (node != NULL)
+	{
+		tmp = node->next;
+		while (tmp != NULL)
+		{
+			if (*(int*)node->content == *(int*)tmp->content)
+			{
+				ft_putstr("Error");
+				exit(0);
+			}
+			tmp = tmp->next;
+		}
+		node = node->next;
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_stack stackes;
@@ -65,6 +86,7 @@ int main(int ac, char **av)
 	ft_parser(ac, av);
 	ft_add_to_stack(ac, av, &stackes);
 	ft_reverse_stack(&stackes);
+	ft_has_duplicate(&stackes);
 	ft_print_list(&stackes);
 	return (0);
 }
