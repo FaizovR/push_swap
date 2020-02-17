@@ -25,4 +25,12 @@ void ft_print_list (t_stack *stackes);
 void ft_add_to_stack (int ac, char **av, t_stack *stackes);
 void ft_overflow_argument(const char *str);
 
+
+void	operation_swap(t_list **top);
+void	operation_push(t_list **dest, t_list **source);
+void	operation_rotate(t_list **top);
+void	operation_reverse_rotate(t_list **top);
+void	double_operation(t_list **stack_a, t_list **stack_b, \
+			void (*f)(t_list **));
+
 #endif
