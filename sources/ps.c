@@ -1,5 +1,7 @@
 #include "../includes/push_swap.h"
 
+
+
 void ft_overflow_argument(const char *str)
 {
 	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
@@ -141,8 +143,11 @@ int main(int ac, char **av)
 	ft_add_to_stack(ac, av, &stackes);
 	ft_reverse_stack(&stackes);
 	ft_has_duplicate(&stackes);
+//	ft_print_list(&stackes);
+//	test(&stackes);
 	ft_print_list(&stackes);
-	test(&stackes);
+//	ft_sort_3(&stackes);
+	ft_sort_5(&stackes);
 	ft_print_list(&stackes);
 	return (0);
 }
