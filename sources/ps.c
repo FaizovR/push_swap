@@ -2,15 +2,20 @@
 
 void ft_overflow_argument(const char *str)
 {
-	if (ft_strcmp(INT_MAX_STR, str) < 0)
-		handle_error();
+//	int zopa = ft_strcmp(INT_MAX_STR, str);
+//	printf("%d\n", zopa);
+	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
+		ft_handle_error();
 	if (str[0] == '+')
 	{
 		if (ft_strcmp(INT_MAX_STR, str + 1) < 0)
-			handle_error();
+			ft_handle_error();
 	}
-	if (ft_strcmp(INT_MIN_STR, str + 1) <0)
-		handle_error();
+	if (*str == '-')
+	{
+		if (ft_strcmp(INT_MIN_STR, str + 1) < 0)
+			ft_handle_error();
+	}
 }
 
 void ft_add_to_stack (int ac, char **av, t_stack *stackes)
@@ -79,7 +84,7 @@ void ft_has_duplicate (t_stack *stackes)
 		while (tmp != NULL)
 		{
 			if (*(int*)node->content == *(int*)tmp->content)
-				handle_error();
+				ft_handle_error();
 			tmp = tmp->next;
 		}
 		node = node->next;
@@ -91,9 +96,9 @@ int main(int ac, char **av)
 	t_stack stackes;
 
 	if (ac == 1)
-		handle_usage();
+		exit(0);
 	if (ac < 2)
-		handle_error();
+		ft_handle_error();
 	ft_parser(ac, av);
 	ft_add_to_stack(ac, av, &stackes);
 	ft_reverse_stack(&stackes);

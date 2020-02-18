@@ -7,11 +7,12 @@ void ft_is_valid_str (const char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (!(ft_isdigit(str[i]) || ft_isspaces(str[i]) || str[i] == '-' || str[i] == '+'))
-		{
-			ft_putstr("Error\n");
-			exit(0);
-		}
+		if ((str[i] == '-' && !ft_isdigit(str[i + 1])))
+			ft_handle_error();
+		if ((str[i] == '+' && !ft_isdigit(str[i + 1])))
+			ft_handle_error();
+		if (!(ft_isdigit(str[i]) || !ft_isspaces(str[i]) || str[i] != '-' || str[i] != '+'))
+			ft_handle_error();
 		i++;
 	}
 }

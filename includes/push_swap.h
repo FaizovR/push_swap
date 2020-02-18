@@ -8,7 +8,6 @@
 
 # define INT_MIN_STR "2147483648"
 # define INT_MAX_STR "2147483647"
-# define PS_USAGE "Usage: ./push_swap <numbers>"
 
 typedef struct	s_stack
 {
@@ -27,8 +26,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes);
 void ft_overflow_argument(const char *str);
 
 //==================================================ERRORS==============================================================
-void handle_error();
-void handle_usage();
+void ft_handle_error();
 
 //==================================================OPERATIONS==========================================================
 void	operation_swap(t_list **top);
