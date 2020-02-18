@@ -35,5 +35,8 @@ void	operation_rotate(t_list **top);
 void	operation_reverse_rotate(t_list **top);
 void	double_operation(t_list **stack_a, t_list **stack_b, \
 			void (*f)(t_list **));
+size_t			ft_lst_size(t_list *begin_list);
+void		ft_instruction(t_list **stack_a, t_list **stack_b, char *name);
+int		get_pivot(t_list *stack);
 
 #endif

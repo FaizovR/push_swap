@@ -14,6 +14,7 @@ add_executable(push_swap
         sources/parser.c
         sources/operators.c
         sources/handle_errors.c
-        )
+        sources/sort_algorithm.c
+        sources/instructions.c)
 
 target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)
