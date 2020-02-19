@@ -148,8 +148,8 @@ int main(int ac, char **av)
 //	ft_print_list(&stackes);
 //	test(&stackes);
 	ft_print_list(&stackes);
-//	ft_sort_3(&stackes);
-	ft_sort_5(&stackes);
+	ft_sort_3(&stackes);
+//	ft_sort_5(&stackes);
 	ft_print_list(&stackes);
 	return (0);
 }

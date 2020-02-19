@@ -4,9 +4,6 @@
 
 void ft_sort_3(t_stack *stackes)
 {
-	int max;
-
-	max = ft_max_in_lst(stackes->stack_a);
 	if (ft_lst_size(stackes->stack_a) == 1)
 		exit(0);
 	else if (ft_lst_size(stackes->stack_a) == 2)
@@ -16,9 +13,9 @@ void ft_sort_3(t_stack *stackes)
 		return;
 	} else if (ft_lst_size(stackes->stack_a) == 3)
 	{
-		if (*(int *)stackes->stack_a->content == max)
+		if (*(int *)stackes->stack_a->content == stackes->max)
 			ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
-		if (*(int *)stackes->stack_a->next->content == max)
+		if (*(int *)stackes->stack_a->next->content == stackes->max)
 			ft_instruction(&stackes->stack_a, &stackes->stack_b, "rra");
 		if (*(int *)stackes->stack_a->content > *(int *)stackes->stack_a->next->content)
 			ft_instruction(&stackes->stack_a, &stackes->stack_b, "sa");
