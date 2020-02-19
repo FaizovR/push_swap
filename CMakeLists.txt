@@ -19,6 +19,7 @@ add_executable(push_swap
         sources/ft_max_in_list.c
         sources/ft_min_in_lst.c
         sources/sort_3_or_5.c
+        sources/ft_sort.c
         )
 
 target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)

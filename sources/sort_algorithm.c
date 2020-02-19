@@ -23,7 +23,6 @@ int		get_pivot(t_list *stack)
 	size_t		stack_size = 0;
 	size_t		i;
 
-
 	i = 1;
 	stack_size = ft_lst_size(stack);
 	stack_size % 2 ? stack_size++ : stack_size;

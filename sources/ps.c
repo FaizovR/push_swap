@@ -139,17 +139,18 @@ int main(int ac, char **av)
 
 	if (ac == 1)
 		exit(0);
-	if (ac < 2)
-		ft_handle_error();
 	ft_parser(ac, av);
 	ft_add_to_stack(ac, av, &stackes);
 	ft_reverse_stack(&stackes);
 	ft_has_duplicate(&stackes);
+	if (ft_is_sorted(stackes.stack_a))
+	    exit(0);
 //	ft_print_list(&stackes);
 //	test(&stackes);
-	ft_print_list(&stackes);
-	ft_sort_3(&stackes);
+//	ft_print_list(&stackes);
+//	ft_sort_3(&stackes);
 //	ft_sort_5(&stackes);
+    ft_sort(&stackes);
 	ft_print_list(&stackes);
 	return (0);
 }

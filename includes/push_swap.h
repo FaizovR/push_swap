@@ -18,6 +18,18 @@ typedef struct	s_stack
 	int         min;
 } 				t_stack;
 
+
+typedef struct s_insert
+{
+    int length_a;
+    int length_b;
+    int n_ra;
+    int n_rb;
+    int n_rr;
+    int n_rra;
+    int n_rrb;
+    int n_rrr;
+}              t_insert;
 //==============================================PARSER AND VALIDATION===================================================
 void ft_is_valid_str (const char *str);
 void ft_parser (int ac, char **av);
@@ -42,7 +54,9 @@ void	ft_instruction(t_list **stack_a, t_list **stack_b, char *name);
 int		get_pivot(t_list *stack);
 
 void 	ft_sort_3(t_stack *stackes);
-int		ft_max_in_lst (t_list *begin_list);
+int		ft_max_in_lst(t_list *begin_list);
 void 	ft_sort_5(t_stack *stackes);
-int		ft_min_in_lst (t_list *begin_list);
+int		ft_min_in_lst(t_list *begin_list);
+int     ft_is_sorted(t_list *begin_list);
+void    ft_sort(t_stack *stackes);
 #endif
