@@ -14,6 +14,8 @@ typedef struct	s_stack
 	t_list		*stack_a;
 	t_list		*stack_b;
 	t_list		*stack_operations;
+	int         max;
+	int         min;
 } 				t_stack;
 
 //==============================================PARSER AND VALIDATION===================================================

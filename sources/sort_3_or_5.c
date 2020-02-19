@@ -42,8 +42,8 @@ void ft_sort_5(t_stack *stackes)
 		return;
 	while (ft_lst_size(stackes->stack_b) < 2)
 	{
-		if (*(int *)stackes->stack_a->content == ft_min_in_lst(stackes->stack_a) \
- 			|| *(int *) stackes->stack_a->content == ft_max_in_lst(stackes->stack_a))
+		if (*(int *)stackes->stack_a->content == stackes->min \
+		|| *(int *) stackes->stack_a->content == stackes->max)
 			ft_instruction(&stackes->stack_a, &stackes->stack_b, "pb");
 		else
 			ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
@@ -51,7 +51,7 @@ void ft_sort_5(t_stack *stackes)
 	ft_sort_3(stackes);
 	ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
 	ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
-	if (*(int *)stackes->stack_a->content == ft_max_in_lst(stackes->stack_a))
+	if (*(int *)stackes->stack_a->content == stackes->max)
 		ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
 	else
 	{

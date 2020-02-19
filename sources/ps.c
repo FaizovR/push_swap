@@ -41,6 +41,8 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 		temp = ft_atoi(av[i]);
 		ft_lstadd(&stackes->stack_a, ft_lstnew(&temp, sizeof(int)));
 	}
+	stackes->max = ft_max_in_lst(stackes->stack_a);
+    stackes->min = ft_min_in_lst(stackes->stack_a);
 }
 
 void ft_print_list (t_stack *stackes)
