@@ -1,8 +1,8 @@
 #include "../includes/push_swap.h"
 
-size_t			ft_lst_size(t_list *begin_list)
+int			ft_lst_size(t_list *begin_list)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (begin_list)
@@ -25,7 +25,7 @@ int		get_pivot(t_list *stack)
 
 	i = 1;
 	stack_size = ft_lst_size(stack);
-	stack_size % 2 ? stack_size++ : stack_size;
+//	stack_size % 2 ? stack_size++ : stack_size;
 	while(i < stack_size / 2)
 	{
 		stack = stack->next;

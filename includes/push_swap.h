@@ -29,7 +29,21 @@ typedef struct s_insert
     int n_rra;
     int n_rrb;
     int n_rrr;
+    int num_in_a;
+    int pos_b;
+    int min;
+    int pos_min;
 }              t_insert;
+
+
+typedef struct		s_res
+{
+    int rabr;
+    int rrabr;
+    int rarrb;
+    int rrarb;
+}					t_res;
+
 //==============================================PARSER AND VALIDATION===================================================
 void ft_is_valid_str (const char *str);
 void ft_parser (int ac, char **av);
@@ -49,7 +63,7 @@ void	operation_rotate(t_list **top);
 void	operation_reverse_rotate(t_list **top);
 void	double_operation(t_list **stack_a, t_list **stack_b, \
 			void (*f)(t_list **));
-size_t	ft_lst_size(t_list *begin_list);
+int 	ft_lst_size(t_list *begin_list);
 void	ft_instruction(t_list **stack_a, t_list **stack_b, char *name);
 int		get_pivot(t_list *stack);
 
@@ -59,4 +73,5 @@ void 	ft_sort_5(t_stack *stackes);
 int		ft_min_in_lst(t_list *begin_list);
 int     ft_is_sorted(t_list *begin_list);
 void    ft_sort(t_stack *stackes);
+void    ft_insert_sort(t_stack *stackes);
 #endif

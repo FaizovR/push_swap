@@ -127,9 +127,14 @@ int				quick_sort(t_stack *stacks)
 	return (1);
 }
 
+
+
 void test(t_stack *stack)
 {
-	quick_sort(stack);
+//    ft_sort_3(stack);
+    ft_insert_sort(stack);
+//	p
+//	rintf("%d\n\n",get_position(*stack->stack_a, *(int *)stack->stack_a->next->next->content));
 }
 
 
@@ -145,12 +150,12 @@ int main(int ac, char **av)
 	ft_has_duplicate(&stackes);
 	if (ft_is_sorted(stackes.stack_a))
 	    exit(0);
-//	ft_print_list(&stackes);
-//	test(&stackes);
+	ft_print_list(&stackes);
+	test(&stackes);
 //	ft_print_list(&stackes);
 //	ft_sort_3(&stackes);
 //	ft_sort_5(&stackes);
-    ft_sort(&stackes);
-	ft_print_list(&stackes);
+//    ft_sort(&stackes);
+//	ft_print_list(&stackes);
 	return (0);
 }
