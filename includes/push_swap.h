@@ -33,6 +33,7 @@ typedef struct s_insert
     int pos_b;
     int min;
     int pos_min;
+    int value_min;
 }              t_insert;
 
 

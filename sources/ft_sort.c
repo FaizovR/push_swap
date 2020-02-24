@@ -10,6 +10,10 @@ void	init_insert(t_insert *insert, t_stack *stacks)
 	insert->n_rra = 0;
 	insert->n_rrb = 0;
 	insert->n_rrr = 0;
+	insert->min = 0;
+	insert->num_in_a = 0;
+	insert->pos_b = 0;
+	insert->pos_min = 0;
 }
 
 int		get_sum_operations(t_insert *insert)
@@ -30,29 +34,17 @@ int		get_position(t_list stack, int value)
 	return (pos);
 }
 
-void	get_position_in_a(t_list *b, t_insert *tmp, t_list *ptr_a)
+void		get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
 {
-    t_list *ptr_next;
+    int		pos;
 
-    ptr_next = ptr_a->next;
-
-
-
-
-    while (ptr_next)
+    pos = 0;
+    while (*(int *)stack.content < value)
     {
-        if ((*(int *)ptr_a->content < *(int *)b->content && *(int *)b->content < *(int *)ptr_next->content) ||
-            (*(int *)ptr_a->content < *(int *)b->content && *(int *)b->content > *(int *)ptr_next->content &&
-            *(int *)ptr_a->content > *(int *)ptr_next->content) || (*(int *)ptr_a->content > *(int *)b->content &&
-            *(int *)b->content < *(int *)ptr_next->content && *(int *)ptr_a->content > *(int *)ptr_next->content))
-        {
-            tmp->num_in_a = get_position(*ptr_a, *(int*)ptr_next->content);
-            return ;
-        }
-        ptr_a = ptr_a->next;
-        ptr_next = ptr_a->next;
+        pos++;
+        stack = *stack.next;
     }
-    tmp->num_in_a = 0;
+    tmp->num_in_a = pos;
 }
 
 void	optimise(int *a1, int *a2, int *res)
@@ -75,7 +67,7 @@ void		count_for_current(t_insert *insert, t_stack stacks, t_list *current,  t_re
 {
     insert->n_rb = get_position(*stacks.stack_b, *(int *)current->content);
     insert->n_rrb = ft_lst_size(stacks.stack_b) - get_position(*stacks.stack_b, *(int *)current->content);
-    get_position_in_a(stacks.stack_b, insert, stacks.stack_a);
+    get_position_in_a_stack(*stacks.stack_a, insert, *(int *)current->content);
     insert->n_ra = insert->num_in_a;
     if (insert->num_in_a)
         insert->n_rra = ft_lst_size(stacks.stack_a) - insert->num_in_a;
@@ -96,54 +88,113 @@ int		get_min(t_res res)
     return (min);
 }
 
-void	count_moves(t_insert *insert, t_stack stacks)
+void	count_moves(t_insert *insert, t_stack stacks, t_res *res)
 {
-	t_res       res;
-    t_list      *temp_b;
 
+    t_list      *temp_b;
+    t_res       temp;
+    t_insert    insert_temp;
+
+    init_insert(&insert_temp, &stacks);
     temp_b = stacks.stack_b;
 	while (temp_b != NULL)
 	{
-        count_for_current(insert, stacks, temp_b, &res);
-        optimise(&(insert->n_ra), &(insert->n_rb), &(insert->n_rr));
-        optimise(&(insert->n_rra), &(insert->n_rrb), &(insert->n_rrr));
-        res.rabr = insert->n_ra + insert->n_rb + insert->n_rr;
-        res.rrabr = insert->n_rra + insert->n_rrb + insert->n_rrr;
-        if (get_position(*stacks.stack_b, *(int *)temp_b->content) == 0 || insert->min > get_min(res))
+        count_for_current(&insert_temp, stacks, temp_b, &temp);
+        optimise(&(insert_temp.n_ra), &(insert_temp.n_rb), &(insert_temp.n_rr));
+        optimise(&(insert_temp.n_rra), &(insert_temp.n_rrb), &(insert_temp.n_rrr));
+        temp.rabr = insert_temp.n_ra + insert_temp.n_rb + insert_temp.n_rr;
+        temp.rrabr = insert_temp.n_rra + insert_temp.n_rrb + insert_temp.n_rrr;
+        if (get_position(*stacks.stack_b, *(int *)temp_b->content) == 0 || insert->min > get_min(temp))
         {
-            insert->min = get_min(res);
+            res->rabr = temp.rabr;
+            res->rarrb = temp.rarrb;
+            res->rrabr = temp.rrabr;
+            temp.rrarb = temp.rrarb;
+            insert->n_ra = insert_temp.n_ra;
+            insert->n_rb = insert_temp.n_rb;
+            insert->n_rr = insert_temp.n_rr;
+            insert->n_rra = insert_temp.n_rra;
+            insert->n_rrb = insert_temp.n_rrb;
+            insert->n_rrr = insert_temp.n_rrr;
+            insert->min = get_min(*res);
             insert->pos_min = get_position(*stacks.stack_b, *(int *)temp_b->content);
+            insert->value_min = *(int *)temp_b->content;
         }
         temp_b = temp_b->next;
 	}
 }
 
+void	do_rarrb(t_list **a, t_list **b, t_insert tmp)
+{
+    while (tmp.n_ra--)
+        ft_instruction(a, b, "ra");
+    while (tmp.n_rrb--)
+        ft_instruction(a, b, "rrb");
+}
+
+void	do_rrarb(t_list **a, t_list **b, t_insert tmp)
+{
+    while (tmp.n_rra--)
+        ft_instruction(a, b, "rra");
+    while (tmp.n_rb--)
+        ft_instruction(a, b, "rb");
+}
+
+void	do_rabr(t_list **a, t_list **b, t_insert tmp)
+{
+    while (tmp.n_rr--)
+        ft_instruction(a, b, "rr");
+    while (tmp.n_ra--)
+        ft_instruction(a, b, "ra");
+    while (tmp.n_rb--)
+        ft_instruction(a, b, "rb");
+}
+
+void	do_rrabr(t_list **a, t_list **b, t_insert tmp)
+{
+    while (tmp.n_rrr--)
+        ft_instruction(a, b, "rrr");
+    while (tmp.n_rra--)
+        ft_instruction(a, b, "rra");
+    while (tmp.n_rrb--)
+        ft_instruction(a, b, "rrb");
+}
+
+void    push_to_a(t_stack *stackes, t_insert *tmp, t_res res)
+{
+    if (res.rarrb == tmp->min)
+        do_rarrb(&stackes->stack_a, &stackes->stack_b, *tmp);
+    else if (res.rrarb == tmp->min)
+        do_rrarb(&stackes->stack_a, &stackes->stack_b, *tmp);
+    else
+    {
+        if ((res.rabr = tmp->n_ra + tmp->n_rb + tmp->n_rr) == tmp->min)
+            do_rabr(&stackes->stack_a, &stackes->stack_b, *tmp);
+        else if ((res.rrabr = tmp->n_rra + tmp->n_rrb + tmp->n_rrr) == tmp->min)
+            do_rrabr(&stackes->stack_a, &stackes->stack_b, *tmp);
+    }
+    ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
+}
 
 void ft_insert_sort(t_stack *stackes)
 {
 	t_insert	insert;
-
+    t_res       res;
 	t_list      *stack_b;
-
 
 	while (ft_lst_size(stackes->stack_a) > 3)
 		ft_instruction(&stackes->stack_a, &stackes->stack_b, "pb");
-//    ft_print_list(stackes);
 	ft_sort_3(stackes);
     ft_print_list(stackes);
     stack_b = stackes->stack_b;
-    printf("\n123\n");
-    int num;
-
-    while(stack_b)
+    while(stackes->stack_b)
 	{
-	    num = *(int *)stack_b->content;
 		init_insert(&insert, stackes);
-		count_moves(&insert, *stackes);
+		count_moves(&insert, *stackes, &res);
         printf("%d", insert.min);
-        stack_b = stack_b->next;
+        push_to_a(stackes, &insert, res);
+        ft_print_list(stackes);
 	}
-
 }
 
 
