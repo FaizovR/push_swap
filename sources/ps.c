@@ -132,7 +132,7 @@ int				quick_sort(t_stack *stacks)
 void test(t_stack *stack)
 {
 //    ft_sort_3(stack);
-    ft_insert_sort(stack);
+    ft_sort(stack);
 //	p
 //	rintf("%d\n\n",get_position(*stack->stack_a, *(int *)stack->stack_a->next->next->content));
 }

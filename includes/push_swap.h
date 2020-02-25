@@ -33,7 +33,6 @@ typedef struct s_insert
     int pos_b;
     int min;
     int pos_min;
-    int value_min;
 }              t_insert;
 
 
@@ -72,7 +71,13 @@ void 	ft_sort_3(t_stack *stackes);
 int		ft_max_in_lst(t_list *begin_list);
 void 	ft_sort_5(t_stack *stackes);
 int		ft_min_in_lst(t_list *begin_list);
-int     ft_is_sorted(t_list *begin_list);
-void    ft_sort(t_stack *stackes);
-void    ft_insert_sort(t_stack *stackes);
+int		ft_is_sorted(t_list *begin_list);
+void	ft_sort(t_stack *stackes);
+void	ft_insert_sort(t_stack *stackes);
+
+void	do_rrabr(t_list **a, t_list **b, t_insert tmp);
+void	do_rabr(t_list **a, t_list **b, t_insert tmp);
+void	do_rrarb(t_list **a, t_list **b, t_insert tmp);
+void	do_rarrb(t_list **a, t_list **b, t_insert tmp);
+
 #endif
