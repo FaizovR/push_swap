@@ -2,7 +2,7 @@
 
 void ft_is_valid_str (const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -19,7 +19,7 @@ void ft_is_valid_str (const char *str)
 
 void ft_parser (int ac, char **av)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (++i < ac)
