@@ -14,10 +14,10 @@ add_executable(push_swap
         sources/parser.c
         sources/operators.c
         sources/handle_errors.c
-        sources/sort_algorithm.c
         sources/instructions.c
         sources/ft_max_in_list.c
         sources/ft_min_in_lst.c
+        sources/ft_lst_size.c
         sources/sort_3_or_5.c
         sources/ft_sort.c
         sources/rolling.c)

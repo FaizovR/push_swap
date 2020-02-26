@@ -12,10 +12,10 @@ void	init_insert(t_insert *insert, t_stack *stacks)
 	insert->n_rrr = 0;
 }
 
-int		get_sum_operations(t_insert *insert)
-{
-	return(insert->n_ra + insert->n_rb + insert->n_rrr + insert->n_rr + insert->n_rrb + insert->n_rra);
-}
+//int		get_sum_operations(t_insert *insert)
+//{
+//	return(insert->n_ra + insert->n_rb + insert->n_rrr + insert->n_rr + insert->n_rrb + insert->n_rra);
+//}
 
 int		get_position(t_list stack, int value)
 {
@@ -35,7 +35,7 @@ void		get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
 	int		pos;
 
 	pos = 0;
-	while (*(int *)stack.content < value)
+	while (*(int *)stack.content < value && stack.next)
 	{
 		pos++;
 		stack = *stack.next;
@@ -173,8 +173,9 @@ void	final_r(t_stack *stack)
 void ft_insert_sort(t_stack *stackes)
 {
 	t_insert	insert;
+	int 		n;
 
-	int n = ft_lst_size(stackes->stack_a);
+	n = ft_lst_size(stackes->stack_a);
 	while (n-- > 3)
 		ft_instruction(&stackes->stack_a, &stackes->stack_b, "pb");
 	ft_sort_3(stackes);
@@ -186,15 +187,17 @@ void ft_insert_sort(t_stack *stackes)
 		init_insert(&insert, stackes);
 	}
 	final_r(stackes);
-	ft_print_list(stackes);
 }
 
-void ft_sort(t_stack *stackes)
+void ft_sort(t_stack *stacks)
 {
-	if (ft_lst_size(stackes->stack_a) <= 3)
-		ft_sort_3(stackes);
-	else if (ft_lst_size(stackes->stack_a) <= 5)
-		ft_sort_5(stackes);
-	else
-		ft_insert_sort(stackes);
+	int stack_a_size;
+
+	stack_a_size = ft_lst_size(stacks->stack_a);
+	if (stack_a_size <= 3)
+		ft_sort_3(stacks);
+	else if (stack_a_size <= 5)
+		ft_sort_5(stacks);
+	else if (stack_a_size > 5)
+		ft_insert_sort(stacks);
 }

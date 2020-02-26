@@ -2,23 +2,28 @@
 
 
 
-void ft_sort_3(t_stack *stackes)
+void ft_sort_3(t_stack *stacks)
 {
-	if (ft_lst_size(stackes->stack_a) == 1)
+	int lst_size;
+
+	lst_size = ft_lst_size(stacks->stack_a);
+	stacks->max = ft_max_in_lst(stacks->stack_a);
+	stacks->min = ft_min_in_lst(stacks->stack_a);
+	if (lst_size == 1)
 		exit(0);
-	else if (ft_lst_size(stackes->stack_a) == 2)
+	else if (lst_size == 2)
 	{
-		if (*(int *) stackes->stack_a->content > *(int *) stackes->stack_a->next->content)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "sa");
+		if (*(int *) stacks->stack_a->content > *(int *) stacks->stack_a->next->content)
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
 		return;
-	} else if (ft_lst_size(stackes->stack_a) == 3)
+	} else if (lst_size == 3)
 	{
-		if (*(int *)stackes->stack_a->content == stackes->max)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
-		if (*(int *)stackes->stack_a->next->content == stackes->max)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "rra");
-		if (*(int *)stackes->stack_a->content > *(int *)stackes->stack_a->next->content)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "sa");
+		if (*(int *)stacks->stack_a->content == stacks->max)
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
+		if (*(int *)stacks->stack_a->next->content == stacks->max)
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "rra");
+		if (*(int *)stacks->stack_a->content > *(int *)stacks->stack_a->next->content)
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
 	}
 }
 
@@ -33,26 +38,26 @@ int ft_is_sorted(t_list *begin_list)
 	return (1);
 }
 
-void ft_sort_5(t_stack *stackes)
+void ft_sort_5(t_stack *stacks)
 {
-	if (ft_is_sorted(stackes->stack_a))
+	if (ft_is_sorted(stacks->stack_a))
 		return;
-	while (ft_lst_size(stackes->stack_b) < 2)
+	while (ft_lst_size(stacks->stack_b) < 2)
 	{
-		if (*(int *)stackes->stack_a->content == stackes->min \
-		|| *(int *) stackes->stack_a->content == stackes->max)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "pb");
+		if (*(int *)stacks->stack_a->content == stacks->min \
+		|| *(int *) stacks->stack_a->content == stacks->max)
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
 		else
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
 	}
-	ft_sort_3(stackes);
-	ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
-	ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
-	if (*(int *)stackes->stack_a->content == stackes->max)
-		ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
+	ft_sort_3(stacks);
+	ft_instruction(&stacks->stack_a, &stacks->stack_b, "pa");
+	ft_instruction(&stacks->stack_a, &stacks->stack_b, "pa");
+	if (*(int *)stacks->stack_a->content == stacks->max)
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
 	else
 	{
-		ft_instruction(&stackes->stack_a, &stackes->stack_b, "sa");
-		ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
 	}
 }

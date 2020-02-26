@@ -1,7 +1,5 @@
 #include "../includes/push_swap.h"
 
-
-
 void ft_overflow_argument(const char *str)
 {
 	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
@@ -18,7 +16,7 @@ void ft_overflow_argument(const char *str)
 	}
 }
 
-void ft_add_to_stack (int ac, char **av, t_stack *stackes)
+void ft_add_to_stack (int ac, char **av, t_stack *stacks)
 {
 	int i;
 	int temp;
@@ -31,7 +29,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 		{
 			ft_overflow_argument(str_arr[i]);
 			temp = ft_atoi(str_arr[i]);
-			ft_lstadd(&stackes->stack_a, ft_lstnew(&temp, sizeof(int)));
+			ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 			i++;
 		}
 	}
@@ -39,16 +37,14 @@ void ft_add_to_stack (int ac, char **av, t_stack *stackes)
 	{
 		ft_overflow_argument(av[i]);
 		temp = ft_atoi(av[i]);
-		ft_lstadd(&stackes->stack_a, ft_lstnew(&temp, sizeof(int)));
+		ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 	}
-	stackes->max = ft_max_in_lst(stackes->stack_a);
-    stackes->min = ft_min_in_lst(stackes->stack_a);
 }
 
-void ft_print_list (t_stack *stackes)
+void ft_print_list (t_stack *stacks)
 {
 	t_list *node;
-	node = stackes->stack_a;
+	node = stacks->stack_a;
 	printf("\n===================Stack_a========================\n");
 	while (node != NULL)
 	{
@@ -56,7 +52,7 @@ void ft_print_list (t_stack *stackes)
 		node = node->next;
 	}
 	printf("\n===================Stack_b========================\n");
-	node = stackes->stack_b;
+	node = stacks->stack_b;
 	while (node != NULL)
 	{
 		printf("%d ", *(int*)node->content);
@@ -83,11 +79,11 @@ void ft_reverse_stack (t_stack *stacks)
 	stacks->stack_a = prev;
 }
 
-void ft_has_duplicate (t_stack *stackes)
+void ft_has_duplicate (t_stack *stacks)
 {
 	t_list *node;
 	t_list *tmp;
-	node = stackes->stack_a;
+	node = stacks->stack_a;
 	while (node != NULL)
 	{
 		tmp = node->next;
@@ -101,61 +97,57 @@ void ft_has_duplicate (t_stack *stackes)
 	}
 }
 
-int				quick_sort(t_stack *stacks)
-{
-	int		pivot;
-
-	pivot = get_pivot(stacks->stack_a);
-	printf("\npivot == %d\n", pivot);
-	while(ft_lst_size(stacks->stack_a) > 5)
-	{
-		if (*(int *)stacks->stack_a->content == pivot)
-		{
-			ft_print_list(stacks);
-			pivot = get_pivot(stacks->stack_a);
-			printf("\npivot == %d\n", pivot);
-		}
-		while (*(int *)stacks->stack_a->content != pivot)
-		{
-			if (*(int *) stacks->stack_a->content > pivot)
-				ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
-			else
-				ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
-		}
-//		ft_print_list(stacks);
-	}
-	return (1);
-}
-
-
+//int				quick_sort(t_stack *stacks)
+//{
+//	int		pivot;
+//
+//	pivot = get_pivot(stacks->stack_a);
+//	printf("\npivot == %d\n", pivot);
+//	while(ft_lst_size(stacks->stack_a) > 5)
+//	{
+//		if (*(int *)stacks->stack_a->content == pivot)
+//		{
+//			ft_print_list(stacks);
+//			pivot = get_pivot(stacks->stack_a);
+//			printf("\npivot == %d\n", pivot);
+//		}
+//		while (*(int *)stacks->stack_a->content != pivot)
+//		{
+//			if (*(int *) stacks->stack_a->content > pivot)
+//				ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
+//			else
+//				ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
+//		}
+////		ft_print_list(stacks);
+//	}
+//	return (1);
+//}
 
 void test(t_stack *stack)
 {
-//    ft_sort_3(stack);
     ft_sort(stack);
-//	p
-//	rintf("%d\n\n",get_position(*stack->stack_a, *(int *)stack->stack_a->next->next->content));
+//	printf("%d\n\n",get_position(*stack->stack_a, *(int *)stack->stack_a->next->next->content));
 }
 
 
 int main(int ac, char **av)
 {
-	t_stack stackes;
+	t_stack stacks;
 
 	if (ac == 1)
 		exit(0);
 	ft_parser(ac, av);
-	ft_add_to_stack(ac, av, &stackes);
-	ft_reverse_stack(&stackes);
-	ft_has_duplicate(&stackes);
-	if (ft_is_sorted(stackes.stack_a))
+	ft_add_to_stack(ac, av, &stacks);
+	ft_reverse_stack(&stacks);
+	ft_has_duplicate(&stacks);
+	if (ft_is_sorted(stacks.stack_a))
 	    exit(0);
-	ft_print_list(&stackes);
-	test(&stackes);
-//	ft_print_list(&stackes);
-//	ft_sort_3(&stackes);
-//	ft_sort_5(&stackes);
-//    ft_sort(&stackes);
-//	ft_print_list(&stackes);
+	ft_print_list(&stacks);
+	test(&stacks);
+	ft_print_list(&stacks);
+//	ft_sort_3(&stacks);
+//	ft_sort_5(&stacks);
+//  ft_sort(&stacks);
+//	ft_print_list(&stacks);
 	return (0);
 }
