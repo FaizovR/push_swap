@@ -20,8 +20,6 @@ typedef struct	s_stack
 
 typedef struct	s_insert
 {
-//	int			length_a;
-//	int			length_b;
 	int			n_ra;
 	int			n_rb;
 	int			n_rr;
@@ -29,7 +27,6 @@ typedef struct	s_insert
 	int			n_rrb;
 	int			n_rrr;
 	int			num_in_a;
-//	int			pos_b;
 	int			min;
 	int			pos_min;
 }				t_insert;

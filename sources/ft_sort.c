@@ -2,8 +2,6 @@
 
 void	init_insert(t_insert *insert)
 {
-//	insert->length_a = ft_lst_size(stacks->stack_a);
-//	insert->length_b = ft_lst_size(stacks->stack_b);
 	insert->n_ra = 0;
 	insert->n_rb = 0;
 	insert->n_rr = 0;
