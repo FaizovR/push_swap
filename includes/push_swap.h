@@ -80,4 +80,13 @@ void			do_rabr(t_list **a, t_list **b, t_insert tmp);
 void			do_rrarb(t_list **a, t_list **b, t_insert tmp);
 void			do_rarrb(t_list **a, t_list **b, t_insert tmp);
 
+
+
+void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name);
+void	ft_overflow_argument(const char *str);
+void	ft_add_to_stack(int ac, char **av, t_stack *stacks);
+void	ft_print_list(t_stack *stacks);
+void	ft_reverse_stack(t_stack *stacks);
+void	ft_has_duplicate(t_stack *stacks);
+
 #endif

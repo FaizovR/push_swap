@@ -12,17 +12,12 @@ void	init_insert(t_insert *insert, t_stack *stacks)
 	insert->n_rrr = 0;
 }
 
-//int		get_sum_operations(t_insert *insert)
-//{
-//	return(insert->n_ra + insert->n_rb + insert->n_rrr + insert->n_rr + insert->n_rrb + insert->n_rra);
-//}
-
 int		get_position(t_list stack, int value)
 {
 	int		pos;
 
 	pos = 0;
-	while (*(int *)stack.content != value)
+	while (*(int *)stack.content != value && stack.next)
 	{
 		pos++;
 		stack = *stack.next;
@@ -30,17 +25,25 @@ int		get_position(t_list stack, int value)
 	return (pos);
 }
 
-void		get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
+void	get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
 {
 	int		pos;
 
-	pos = 0;
-	while (*(int *)stack.content < value && stack.next)
+	pos = 1;
+	while (stack.next)
 	{
+		if ((*(int *)stack.content < value && *(int *)stack.next->content > value)
+		|| (*(int *)stack.content < value && *(int *)stack.next->content < value &&
+				*(int *)stack.content > *(int *)stack.next->content) ||
+				(*(int *)stack.content > value && *(int *)stack.next->content > value && *(int *)stack.content > *(int *)stack.next->content))
+		{
+			tmp->num_in_a = pos;
+			return;
+		}
 		pos++;
 		stack = *stack.next;
 	}
-	tmp->num_in_a = pos;
+	tmp->num_in_a = 0;
 }
 
 void	optimise(int *a1, int *a2, int *res)
@@ -59,7 +62,7 @@ void	optimise(int *a1, int *a2, int *res)
 	}
 }
 
-void		count_for_current(t_insert *insert, t_stack stacks, t_list *current,  t_res *res)
+void	count_for_current(t_insert *insert, t_stack stacks, t_list *current,  t_res *res)
 {
 	insert->n_rb = get_position(*stacks.stack_b, *(int *)current->content);
 	insert->n_rrb = ft_lst_size(stacks.stack_b) - get_position(*stacks.stack_b, *(int *)current->content);
@@ -119,34 +122,34 @@ void	count_again(t_insert *insert, t_stack stacks, t_res *temp)
 }
 
 
-void	push_to_a(t_stack *stackes, t_insert *tmp)
+void	push_to_a(t_stack *stacks, t_insert *tmp)
 {
 	t_res res;
 
-	count_again(tmp, *stackes, &res);
+	count_again(tmp, *stacks, &res);
 	if (res.rarrb == tmp->min)
-		do_rarrb(&stackes->stack_a, &stackes->stack_b, *tmp);
+		do_rarrb(&stacks->stack_a, &stacks->stack_b, *tmp);
 	else if (res.rrarb == tmp->min)
-		do_rrarb(&stackes->stack_a, &stackes->stack_b, *tmp);
+		do_rrarb(&stacks->stack_a, &stacks->stack_b, *tmp);
 	else
 	{
 		optimise(&(tmp->n_ra), &(tmp->n_rb), &(tmp->n_rr));
 		optimise(&(tmp->n_rra), &(tmp->n_rrb), &(tmp->n_rrr));
 		if ((res.rabr = tmp->n_ra + tmp->n_rb + tmp->n_rr) == tmp->min)
-			do_rabr(&stackes->stack_a, &stackes->stack_b, *tmp);
+			do_rabr(&stacks->stack_a, &stacks->stack_b, *tmp);
 		else if ((res.rrabr = tmp->n_rra + tmp->n_rrb + tmp->n_rrr) == tmp->min)
-			do_rrabr(&stackes->stack_a, &stackes->stack_b, *tmp);
+			do_rrabr(&stacks->stack_a, &stacks->stack_b, *tmp);
 	}
-	ft_instruction(&stackes->stack_a, &stackes->stack_b, "pa");
+	ft_instruction(&stacks->stack_a, &stacks->stack_b, "pa");
 }
-void	rotate_a(t_stack *stackes, int n_ra, int n_rra)
+void	rotate_a(t_stack *stacks, int n_ra, int n_rra)
 {
 	if (n_ra > n_rra)
 		while (n_rra--)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "rra");
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "rra");
 	else
 		while (n_ra--)
-			ft_instruction(&stackes->stack_a, &stackes->stack_b, "ra");
+			ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
 }
 
 void	final_r(t_stack *stack)
@@ -170,23 +173,23 @@ void	final_r(t_stack *stack)
 	rotate_a(stack, n_ra, n_rra);
 }
 
-void ft_insert_sort(t_stack *stackes)
+void ft_insert_sort(t_stack *stacks)
 {
 	t_insert	insert;
 	int 		n;
 
-	n = ft_lst_size(stackes->stack_a);
+	n = ft_lst_size(stacks->stack_a);
 	while (n-- > 3)
-		ft_instruction(&stackes->stack_a, &stackes->stack_b, "pb");
-	ft_sort_3(stackes);
-	init_insert(&insert, stackes);
-	while(stackes->stack_b)
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
+	ft_sort_3(stacks);
+	init_insert(&insert, stacks);
+	while(stacks->stack_b)
 	{
-		count_moves(&insert, *stackes);
-		push_to_a(stackes, &insert);
-		init_insert(&insert, stackes);
+		count_moves(&insert, *stacks);
+		push_to_a(stacks, &insert);
+		init_insert(&insert, stacks);
 	}
-	final_r(stackes);
+	final_r(stacks);
 }
 
 void ft_sort(t_stack *stacks)
