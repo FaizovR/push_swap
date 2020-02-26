@@ -42,6 +42,8 @@ void ft_sort_5(t_stack *stacks)
 {
 	if (ft_is_sorted(stacks->stack_a))
 		return;
+	stacks->max = ft_max_in_lst(stacks->stack_a);
+	stacks->min = ft_min_in_lst(stacks->stack_a);
 	while (ft_lst_size(stacks->stack_b) < 2)
 	{
 		if (*(int *)stacks->stack_a->content == stacks->min \

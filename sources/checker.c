@@ -4,7 +4,7 @@ void	read_instructions(t_stack *stacks)
 {
 	char *line;
 
-	while(get_next_line(1, &line))
+	while(get_next_line(0, &line))
 	{
 		ft_instruction_checker(&stacks->stack_a, &stacks->stack_b, line);
 	}
