@@ -13,7 +13,6 @@ typedef struct	s_stack
 {
 	t_list		*stack_a;
 	t_list		*stack_b;
-	t_list		*stack_operations;
 	int			max;
 	int			min;
 }				t_stack;
@@ -21,8 +20,8 @@ typedef struct	s_stack
 
 typedef struct	s_insert
 {
-	int			length_a;
-	int			length_b;
+//	int			length_a;
+//	int			length_b;
 	int			n_ra;
 	int			n_rb;
 	int			n_rr;
@@ -30,7 +29,7 @@ typedef struct	s_insert
 	int			n_rrb;
 	int			n_rrr;
 	int			num_in_a;
-	int			pos_b;
+//	int			pos_b;
 	int			min;
 	int			pos_min;
 }				t_insert;
@@ -65,7 +64,6 @@ void			double_operation(t_list **stack_a, t_list **stack_b, \
 			void (*f)(t_list **));
 int				ft_lst_size(t_list *begin_list);
 void			ft_instruction(t_list **stack_a, t_list **stack_b, char *name);
-//int		get_pivot(t_list *stack);
 
 void			ft_sort_3(t_stack *stacks);
 void			ft_sort_5(t_stack *stacks);
@@ -82,11 +80,10 @@ void			do_rarrb(t_list **a, t_list **b, t_insert tmp);
 
 
 
-void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name);
-void	ft_overflow_argument(const char *str);
-void	ft_add_to_stack(int ac, char **av, t_stack *stacks);
-void	ft_print_list(t_stack *stacks);
-void	ft_reverse_stack(t_stack *stacks);
-void	ft_has_duplicate(t_stack *stacks);
+void			ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name);
+void			ft_overflow_argument(const char *str);
+void			ft_add_to_stack(int ac, char **av, t_stack *stacks);
+void			ft_reverse_stack(t_stack *stacks);
+void			ft_has_duplicate(t_stack *stacks);
 
 #endif

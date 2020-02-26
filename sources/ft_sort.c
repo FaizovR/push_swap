@@ -1,9 +1,9 @@
 #include "../includes/push_swap.h"
 
-void	init_insert(t_insert *insert, t_stack *stacks)
+void	init_insert(t_insert *insert)
 {
-	insert->length_a = ft_lst_size(stacks->stack_a);
-	insert->length_b = ft_lst_size(stacks->stack_b);
+//	insert->length_a = ft_lst_size(stacks->stack_a);
+//	insert->length_b = ft_lst_size(stacks->stack_b);
 	insert->n_ra = 0;
 	insert->n_rb = 0;
 	insert->n_rr = 0;
@@ -182,12 +182,12 @@ void ft_insert_sort(t_stack *stacks)
 	while (n-- > 3)
 		ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
 	ft_sort_3(stacks);
-	init_insert(&insert, stacks);
+	init_insert(&insert);
 	while(stacks->stack_b)
 	{
 		count_moves(&insert, *stacks);
 		push_to_a(stacks, &insert);
-		init_insert(&insert, stacks);
+		init_insert(&insert);
 	}
 	final_r(stacks);
 }
