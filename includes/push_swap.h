@@ -47,9 +47,11 @@ void			ft_has_duplicate (t_stack *stacks);
 void			ft_reverse_stack (t_stack *stacks);
 void			ft_print_list (t_stack *stacks);
 void			ft_add_to_stack (int ac, char **av, t_stack *stacks);
-void			ft_overflow_argument(const char *str);
+void			ft_overflow_argument(const char *str, t_stack *stacks);
+int				ft_is_sorted(t_list *begin_list);
 
 //==================================================ERRORS==============================================================
+void			ft_handle_error_lst(t_list *stack_a, t_list *stack_b);
 void			ft_handle_error();
 
 //==================================================OPERATIONS==========================================================
@@ -66,7 +68,6 @@ void			ft_sort_3(t_stack *stacks);
 void			ft_sort_5(t_stack *stacks);
 int				ft_max_in_lst(t_list *begin_list);
 int				ft_min_in_lst(t_list *begin_list);
-int				ft_is_sorted(t_list *begin_list);
 void			ft_sort(t_stack *stacks);
 void			ft_insert_sort(t_stack *stacks);
 
@@ -75,12 +76,10 @@ void			do_rabr(t_list **a, t_list **b, t_insert tmp);
 void			do_rrarb(t_list **a, t_list **b, t_insert tmp);
 void			do_rarrb(t_list **a, t_list **b, t_insert tmp);
 
-
-
 void			ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name);
-void			ft_overflow_argument(const char *str);
-void			ft_add_to_stack(int ac, char **av, t_stack *stacks);
-void			ft_reverse_stack(t_stack *stacks);
-void			ft_has_duplicate(t_stack *stacks);
+
+void			read_instructions(t_stack *stacks);
+int				ft_lst_is_empty(t_list *node);
+void			ft_clear_stack(t_list *node);
 
 #endif

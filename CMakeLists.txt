@@ -20,7 +20,7 @@ add_executable(push_swap
         sources/ft_lst_size.c
         sources/sort_3_or_5.c
         sources/ft_sort.c
-        sources/temp.c
+        sources/validation.c
         sources/rolling.c)
 
 add_executable(checker
@@ -34,7 +34,8 @@ add_executable(checker
         sources/ft_lst_size.c
         sources/sort_3_or_5.c
         sources/ft_sort.c
-        sources/rolling.c sources/temp.c)
+        sources/rolling.c
+        sources/validation.c)
 
 target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)
 target_link_libraries(checker ${CMAKE_SOURCE_DIR}/libft/libft.a)

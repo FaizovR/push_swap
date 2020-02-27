@@ -1,5 +1,12 @@
 #include "../includes/push_swap.h"
 
+int ft_lst_is_empty(t_list *node)
+{
+	if (!node)
+		return 1;
+	return 0;
+}
+
 void	read_instructions(t_stack *stacks)
 {
 	char *line;
@@ -8,7 +15,7 @@ void	read_instructions(t_stack *stacks)
 	{
 		ft_instruction_checker(&stacks->stack_a, &stacks->stack_b, line);
 	}
-	if (ft_is_sorted(stacks->stack_a))
+	if (ft_is_sorted(stacks->stack_a) && ft_lst_is_empty(stacks->stack_b))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
@@ -24,7 +31,5 @@ int	main(int ac, char **av)
 	ft_add_to_stack(ac, av, &stacks);
 	ft_reverse_stack(&stacks);
 	ft_has_duplicate(&stacks);
-	if (ft_is_sorted(stacks.stack_a))
-		exit(0);
 	read_instructions(&stacks);
 }

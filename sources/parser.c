@@ -11,7 +11,7 @@ void ft_is_valid_str (const char *str)
 			ft_handle_error();
 		if ((str[i] == '+' && !ft_isdigit(str[i + 1])))
 			ft_handle_error();
-		if (!(ft_isdigit(str[i]) || !ft_isspaces(str[i]) || str[i] != '-' || str[i] != '+'))
+		if (!ft_isdigit(str[i]) && !ft_isspaces(str[i]) && str[i] != '+' && str[i] != '-')
 			ft_handle_error();
 		i++;
 	}

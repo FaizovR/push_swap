@@ -1,20 +1,20 @@
 #include "../includes/push_swap.h"
 
-void ft_overflow_argument(const char *str)
+void ft_overflow_argument(const char *str, t_stack *stacks)
 {
 	if (ft_strlen(str) > 12)
-		ft_handle_error();
+		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
-		ft_handle_error();
+		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	if (str[0] == '+')
 	{
 		if (ft_strcmp(INT_MAX_STR, str + 1) < 0 && ft_strlen(str) == 10)
-			ft_handle_error();
+			ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	}
 	if (*str == '-')
 	{
 		if (ft_strcmp(INT_MIN_STR, str + 1) < 0 && ft_strlen(str) == 10)
-			ft_handle_error();
+			ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	}
 }
 
@@ -29,7 +29,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stacks)
 		str_arr = ft_strsplit(av[1], ' ');
 		while (str_arr[i])
 		{
-			ft_overflow_argument(str_arr[i]);
+			ft_overflow_argument(str_arr[i], stacks);
 			temp = ft_atoi(str_arr[i]);
 			ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 			i++;
@@ -37,7 +37,7 @@ void ft_add_to_stack (int ac, char **av, t_stack *stacks)
 	}
 	while (++i < ac)
 	{
-		ft_overflow_argument(av[i]);
+		ft_overflow_argument(av[i], stacks);
 		temp = ft_atoi(av[i]);
 		ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 	}
@@ -92,7 +92,7 @@ void ft_has_duplicate (t_stack *stacks)
 		while (tmp != NULL)
 		{
 			if (*(int*)node->content == *(int*)tmp->content)
-				ft_handle_error();
+				ft_handle_error(stacks->stack_a, stacks->stack_b);
 			tmp = tmp->next;
 		}
 		node = node->next;

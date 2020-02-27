@@ -52,5 +52,5 @@ void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name) {
 	else if (!ft_strcmp(name, "rrr"))
 		double_operation(stack_a, stack_b, operation_reverse_rotate);
 	else
-		ft_handle_error();
+		ft_handle_error_lst(*stack_a, *stack_b);
 }
