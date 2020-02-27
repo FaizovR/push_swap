@@ -2,6 +2,8 @@
 
 void ft_overflow_argument(const char *str)
 {
+	if (ft_strlen(str) > 12)
+		ft_handle_error();
 	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
 		ft_handle_error();
 	if (str[0] == '+')
@@ -97,29 +99,4 @@ void ft_has_duplicate (t_stack *stacks)
 	}
 }
 
-//int				quick_sort(t_stack *stacks)
-//{
-//	int		pivot;
-//
-//	pivot = get_pivot(stacks->stack_a);
-//	printf("\npivot == %d\n", pivot);
-//	while(ft_lst_size(stacks->stack_a) > 5)
-//	{
-//		if (*(int *)stacks->stack_a->content == pivot)
-//		{
-//			ft_print_list(stacks);
-//			pivot = get_pivot(stacks->stack_a);
-//			printf("\npivot == %d\n", pivot);
-//		}
-//		while (*(int *)stacks->stack_a->content != pivot)
-//		{
-//			if (*(int *) stacks->stack_a->content > pivot)
-//				ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
-//			else
-//				ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
-//		}
-////		ft_print_list(stacks);
-//	}
-//	return (1);
-//}
 
