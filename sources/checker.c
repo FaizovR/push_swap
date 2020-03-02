@@ -1,17 +1,17 @@
 #include "../includes/push_swap.h"
 
-int ft_lst_is_empty(t_list *node)
+int			ft_lst_is_empty(t_list *node)
 {
 	if (!node)
-		return 1;
-	return 0;
+		return (1);
+	return (0);
 }
 
-void	read_instructions(t_stack *stacks)
+void		read_instructions(t_stack *stacks)
 {
-	char *line;
+	char	*line;
 
-	while(get_next_line(0, &line))
+	while (get_next_line(0, &line))
 	{
 		ft_instruction_checker(&stacks->stack_a, &stacks->stack_b, line);
 	}
@@ -21,9 +21,9 @@ void	read_instructions(t_stack *stacks)
 		ft_putstr("KO\n");
 }
 
-int	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_stack		stacks;
+	t_stack	stacks;
 
 	if (ac == 1)
 		return (0);

@@ -43,25 +43,6 @@ void ft_add_to_stack (int ac, char **av, t_stack *stacks)
 	}
 }
 
-void ft_print_list (t_stack *stacks)
-{
-	t_list *node;
-	node = stacks->stack_a;
-	printf("\n===================Stack_a========================\n");
-	while (node != NULL)
-	{
-		printf("%d ", *(int*)node->content);
-		node = node->next;
-	}
-	printf("\n===================Stack_b========================\n");
-	node = stacks->stack_b;
-	while (node != NULL)
-	{
-		printf("%d ", *(int*)node->content);
-		node = node->next;
-	}
-}
-
 void ft_reverse_stack (t_stack *stacks)
 {
 	t_list *current;

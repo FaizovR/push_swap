@@ -8,8 +8,8 @@ void ft_handle_error()
 
 void ft_handle_error_lst(t_list *stack_a, t_list *stack_b)
 {
-	(stack_a) ? ft_clear_stack(stack_a) : 0;
-	(stack_b) ? ft_clear_stack(stack_b) : 0;
+	ft_lstdel(&stack_a, &del);
+	ft_lstdel(&stack_b, &del);
 	ft_putstr("Error\n");
 	exit(0);
 }

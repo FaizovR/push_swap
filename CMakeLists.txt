@@ -10,16 +10,18 @@ file (GLOB PUSH_SWAP
         )
 
 add_executable(push_swap
-        sources/ps.c
+        sources/push_swap.c
         sources/parser.c
         sources/operators.c
         sources/handle_errors.c
         sources/instructions.c
-        sources/ft_max_in_list.c
+        sources/ft_max_in_lst.c
         sources/ft_min_in_lst.c
         sources/ft_lst_size.c
         sources/sort_3_or_5.c
         sources/ft_sort.c
+        sources/ft_sort_helper.c
+        sources/positions.c
         sources/validation.c
         sources/rolling.c)
 
@@ -29,11 +31,13 @@ add_executable(checker
         sources/operators.c
         sources/handle_errors.c
         sources/instructions.c
-        sources/ft_max_in_list.c
+        sources/ft_max_in_lst.c
         sources/ft_min_in_lst.c
         sources/ft_lst_size.c
         sources/sort_3_or_5.c
         sources/ft_sort.c
+        sources/ft_sort_helper.c
+        sources/positions.c
         sources/rolling.c
         sources/validation.c)
 
