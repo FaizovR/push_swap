@@ -2,7 +2,7 @@
 
 int		get_min(t_res res)
 {
-	int min;
+	int	min;
 
 	min = res.rabr;
 	(min > res.rrabr) ? (min = res.rrabr) : 0;
@@ -11,10 +11,12 @@ int		get_min(t_res res)
 	return (min);
 }
 
-void	count_for_current(t_insert *insert, t_stack stacks, t_list *current,  t_res *res)
+void	count_for_current(t_insert *insert, t_stack stacks,
+		t_list *current, t_res *res)
 {
 	insert->n_rb = get_position(*stacks.stack_b, *(int *)current->content);
-	insert->n_rrb = ft_lst_size(stacks.stack_b) - get_position(*stacks.stack_b, *(int *)current->content);
+	insert->n_rrb = ft_lst_size(stacks.stack_b) -
+			get_position(*stacks.stack_b, *(int *)current->content);
 	get_position_in_a_stack(*stacks.stack_a, insert, *(int *)current->content);
 	insert->n_ra = insert->num_in_a;
 	if (insert->num_in_a)
@@ -41,21 +43,21 @@ void	optimise(int *a1, int *a2, int *res)
 	}
 }
 
-void	get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
+void	get_position_in_a_stack(t_list stack, t_insert *tmp, int val)
 {
-	int		pos;
+	int	pos;
 
 	pos = 1;
 	while (stack.next)
 	{
-		if ((*(int *)stack.content < value && *(int *)stack.next->content > value)
-			|| (*(int *)stack.content < value && *(int *)stack.next->content < value &&
-				*(int *)stack.content > *(int *)stack.next->content) ||
-			(*(int *)stack.content > value && *(int *)stack.next->content > value
-			 && *(int *)stack.content > *(int *)stack.next->content))
+		if ((*(int *)stack.content < val && *(int *)stack.next->content > val)
+		|| (*(int *)stack.content < val && *(int *)stack.next->content < val &&
+		*(int *)stack.content > *(int *)stack.next->content) ||
+		(*(int *)stack.content > val && *(int *)stack.next->content > val
+		&& *(int *)stack.content > *(int *)stack.next->content))
 		{
 			tmp->num_in_a = pos;
-			return;
+			return ;
 		}
 		pos++;
 		stack = *stack.next;
@@ -65,7 +67,7 @@ void	get_position_in_a_stack(t_list stack, t_insert *tmp, int value)
 
 int		get_position(t_list stack, int value)
 {
-	int		pos;
+	int	pos;
 
 	pos = 0;
 	while (*(int *)stack.content != value && stack.next)

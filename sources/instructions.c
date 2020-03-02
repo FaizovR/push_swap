@@ -28,7 +28,8 @@ void	ft_instruction(t_list **stack_a, t_list **stack_b, char *name)
 	ft_putchar('\n');
 }
 
-void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name) {
+void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name)
+{
 	if (!ft_strcmp(name, "sa"))
 		operation_swap(stack_a);
 	else if (!ft_strcmp(name, "pa"))

@@ -1,28 +1,29 @@
 #include "../includes/push_swap.h"
 
-void ft_overflow_argument(const char *str, t_stack *stacks)
+void		ft_overflow_argument(const char *str, t_stack *stacks)
 {
-	if (ft_strlen(str) > 12)
+	if (ft_strlen(str) > 11)
 		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
-	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) == 10)
+	if (ft_strcmp(INT_MAX_STR, str) < 0 && ft_strlen(str) >= 10)
 		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	if (str[0] == '+')
 	{
-		if (ft_strcmp(INT_MAX_STR, str + 1) < 0 && ft_strlen(str) == 10)
+		if (ft_strcmp(INT_MAX_STR, str + 1) < 0 && ft_strlen(str) >= 10)
 			ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	}
 	if (*str == '-')
 	{
-		if (ft_strcmp(INT_MIN_STR, str + 1) < 0 && ft_strlen(str) == 10)
+		if (ft_strcmp(INT_MIN_STR, str + 1) < 0 && ft_strlen(str) >= 11)
 			ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 	}
 }
 
-void ft_add_to_stack (int ac, char **av, t_stack *stacks)
+void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 {
-	int i;
-	int temp;
-	char **str_arr;
+	int		i;
+	int		temp;
+	char	**str_arr;
+
 	i = 0;
 	if (ac == 2)
 	{
@@ -43,11 +44,11 @@ void ft_add_to_stack (int ac, char **av, t_stack *stacks)
 	}
 }
 
-void ft_reverse_stack (t_stack *stacks)
+void		ft_reverse_stack(t_stack *stacks)
 {
-	t_list *current;
-	t_list *next;
-	t_list *prev;
+	t_list	*current;
+	t_list	*next;
+	t_list	*prev;
 
 	prev = NULL;
 	next = NULL;
@@ -62,10 +63,11 @@ void ft_reverse_stack (t_stack *stacks)
 	stacks->stack_a = prev;
 }
 
-void ft_has_duplicate (t_stack *stacks)
+void		ft_has_duplicate(t_stack *stacks)
 {
-	t_list *node;
-	t_list *tmp;
+	t_list	*node;
+	t_list	*tmp;
+
 	node = stacks->stack_a;
 	while (node != NULL)
 	{
@@ -79,5 +81,3 @@ void ft_has_duplicate (t_stack *stacks)
 		node = node->next;
 	}
 }
-
-

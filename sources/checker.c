@@ -25,6 +25,7 @@ int			main(int ac, char **av)
 {
 	t_stack	stacks;
 
+	stack_init(&stacks);
 	if (ac == 1)
 		return (0);
 	ft_parser(ac, av);
@@ -32,4 +33,5 @@ int			main(int ac, char **av)
 	ft_reverse_stack(&stacks);
 	ft_has_duplicate(&stacks);
 	read_instructions(&stacks);
+	return (0);
 }

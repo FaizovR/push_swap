@@ -1,29 +1,12 @@
 #include "../includes/push_swap.h"
 
-void del(void *content, size_t content_size)
+int			main(int ac, char **av)
 {
-	free(content);
-	content = NULL;
-	content_size = 0;
-}
-
-void	stack_init(t_stack *stacks)
-{
-	stacks->min = 0;
-	stacks->max = 0;
-	stacks->stack_b = NULL;
-	stacks->stack_a = NULL;
-}
-
-
-int main(int ac, char **av)
-{
-	t_stack stacks;
+	t_stack	stacks;
 
 	stack_init(&stacks);
 	if (ac == 1)
 		exit(0);
-
 	ft_parser(ac, av);
 	ft_add_to_stack(ac, av, &stacks);
 	ft_reverse_stack(&stacks);
