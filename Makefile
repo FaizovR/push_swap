@@ -1,76 +1,124 @@
-Color_Off='\033[0m'
-Black='\033[0;30m'
-Red='\033[1;31m'
-Green='\033[3;32m'
-Yellow='\033[0;33m'
-Blue='\033[0;34m'
-Purple='\033[0;35m'
-Cyan='\033[0;36m'
-White='\033[1;37m
-
-PUSH_SWAP_NAME = push_swap
-CHECKER_NAME = checker
-LIBFT = libft.a
-
-SOURCES_DIR = ./sources/
-SOURCES_FILES = ft_lst_size.c \
-                ft_max_in_list.c \
-                ft_sort.c \
-                handle_error.c \
-                intructions.c \
-                operators.c \
-                parser.c \
-                rolling.c \
-                sort_3_or_5.c \
-                validation.c
-
-PUSH_SWAP = push_swap.c $(SOURCES_FILES)
-CHECKER = checker.c $(SOURCES_FILES)
-
-OBJECTS_DIR = ./objects
-
-PUSH_SWAP_FILES = $(patsubst %.c, %.o, $(PUSH_SWAP))
-PUSH_SWAP_OBJECTS = $(addprefix $(OBJECTS_DIR), $(PUSH_SWAP_FILES))
-
-CHECKER_FILES = $(patsubst %.c, %.o, $(CHECKER))
-CHECKER_OBJECTS = $(addprefix $(OBJECTS_DIR), $(CHECKER_FILES))
-
-LIBFT_HEADERS_DIR = ./libft/includes/
-LIBFT_HEADERS_FILES = libft.h get_next_line.h
-LIBFT_HEADERS = $(addprefix $(HEADERS_DIR), $(HEADER_FILES))
-
-HEADERS_DIR = ./includes/
-HEADER_FILES = push_swap.h
-HEADERS = $(addprefix $(HEADERS_DIR), $(HEADER_FILES))
+NAME_PS = push_swap
+NAME_CH = checker
+# NAME_VS = visualizer
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Werror -Wextra -O3
+LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
+#  -lmlx -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
+INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
+# -I$(MINILIBX_HEADERS)
 
-all: $(PUSH_SWAP_NAME) $(CHECKER_NAME)
+LIBFT = $(LIBFT_DIRECTORY)libft.a
+LIBFT_DIRECTORY = ./libft/
+LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
 
-$(PUSH_SWAP_NAME): $(PUSH_SWAP_OBJECTS)
-    make -C libft
-    $(CC) $(FLAGS) $^ $(LIBFT) -o $(PUSH_SWAP_NAME)
-    printf $(Green)"push_swap created!\n"$(Color_Off)
+# MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
+# MINILIBX_DIRECTORY = ./minilibx_macos/
+# MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-$(CHECKER_NAME): $(CHECKER_OBJECTS)
-    make -C libft
-    $(CC) $(FLAGS) $^ $(LIBFT) -o $(CHECKER_NAME)
-    printf $(Green)"checker created!\n"$(Color_Off)
+HEADERS_LIST = push_swap.h\
+# 	error_message.h\
+# 	visualizer.h
+HEADERS_DIRECTORY = ./includes/
+HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-$(OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c $(HEADERS) $(LIBFT_HEADERS)
-    mkdir -p ./objects
-    $(CC) $(FLAGS) -c $< -o $@ -I $(HEADERS_DIR) -I $(LIBFT_HEADERS_DIR)
+SOURCES_DIRECTORY = ./sources/
+SOURCES_LIST = ft_lst_size.c\
+	ft_max_in_lst.c\
+	ft_min_in_lst.c\
+	ft_sort.c\
+	ft_sort_helper.c\
+	handle_errors.c\
+	instructions.c\
+	operators.c\
+	parser.c\
+	positions.c\
+	rolling.c\
+	sort_3_or_5.c\
+	validation.c\
+
+SOURCES_LIST_PS = push_swap.c
+SOURCES_LIST_CH = checker.c
+# SOURCES_LIST_VS = visualizer.c\
+	draw.c\
+	draw_utils.c
+SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
+SOURCES_PS = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_PS))
+SOURCES_CH = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_CH))
+# SOURCES_VS = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_VS))
+
+OBJECTS_DIRECTORY = objects/
+OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
+OBJECTS_LIST_PS = $(patsubst %.c, %.o, $(SOURCES_LIST_PS))
+OBJECTS_LIST_CH = $(patsubst %.c, %.o, $(SOURCES_LIST_CH))
+# OBJECTS_LIST_VS = $(patsubst %.c, %.o, $(SOURCES_LIST_VS))
+OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
+OBJECTS_PS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_PS))
+OBJECTS_CH = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_CH))
+# OBJECTS_VS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_VS))
+
+# COLORS
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+
+.PHONY: all clean fclean re
+
+all: $(NAME_PS) $(NAME_CH)
+# $(NAME_VS)
+
+$(NAME_PS): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_PS)
+	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_PS) -o $(NAME_PS)
+	@echo "\n$(NAME_PS): $(GREEN)$(NAME_PS) object files were created$(RESET)"
+	@echo "$(NAME_PS): $(GREEN)$(NAME_PS) was created$(RESET)"
+
+$(NAME_CH): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_CH)
+	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_CH) -o $(NAME_CH)
+	@echo "\n$(NAME_PS): $(GREEN)$(NAME_CH) object files were created$(RESET)"
+	@echo "$(NAME_PS): $(GREEN)$(NAME_CH) was created$(RESET)"
+
+# $(NAME_VS): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_VS)
+# 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_VS) -o $(NAME_VS)
+# 	@echo "\n$(NAME_PS): $(GREEN)$(NAME_VS) object files were created$(RESET)"
+# 	@echo "$(NAME_PS): $(GREEN)$(NAME_VS) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME_PS): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
+	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@echo "$(GREEN).$(RESET)\c"
+
+$(LIBFT):
+	@echo "$(NAME_PS): $(GREEN)creating $(LIBFT)...$(RESET)"
+	@$(MAKE) -sC $(LIBFT_DIRECTORY)
+
+# $(MINILIBX):
+# 	@echo "$(NAME_PS): $(GREEN)Creating $(MINILIBX)...$(RESET)"
+# 	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
 
 clean:
-    /bin/rm -rf $(OBJECTS_DIR)
-    printf $(Red)"objects cleaned\n"$(Color_Off)
+	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+# 	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME_PS): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
+	@echo "$(NAME_PS): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
-    /bin/rm -rf $(OBJECTS_DIR)
-    make -C libft clean
-    printf $(Red)"Binaries have been cleaned\n"$(Color_Off)
+# 	@rm -f $(MINILIBX)
+	@echo "$(NAME_PS): $(RED)$(MINILIBX) was deleted$(RESET)"
+	@rm -f $(LIBFT)
+	@echo "$(NAME_PS): $(RED)$(LIBFT) was deleted$(RESET)"
+	@rm -f $(NAME_PS)
+	@echo "$(NAME_PS): $(RED)$(NAME_PS) was deleted$(RESET)"
+	@rm -f $(NAME_CH)
+	@echo "$(NAME_PS): $(RED)$(NAME_CH) was deleted$(RESET)"
+# 	@rm -f $(NAME_VS)
+	@echo "$(NAME_PS): $(RED)$(NAME_VS) was deleted$(RESET)"
 
-re: fclean clean
-
-.PHONY all clean fclean re
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
