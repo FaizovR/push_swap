@@ -4,8 +4,8 @@
 #include "mlx.h"
 #include "push_swap.h"
 
-# define W_WIDTH 1200
-# define W_HEIGHT 1000
+# define W_WIDTH 1300
+# define W_HEIGHT 1050
 
 typedef struct		s_data
 {
