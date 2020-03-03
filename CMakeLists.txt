@@ -1,13 +1,19 @@
 cmake_minimum_required(VERSION 3.15)
 project(push_swap)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror")
+add_compile_options(-Wall -Wextra -Werror)
 set(CMAKE_C_STANDARD 99)
 
-file (GLOB PUSH_SWAP
-        sources/*.c
-        includes/*.h
-        )
+include_directories(
+        includes
+        libft/
+)
+
+link_directories(push_swap
+        libft)
+
+link_directories(checker
+        libft)
 
 add_executable(push_swap
         sources/push_swap.c
@@ -25,6 +31,11 @@ add_executable(push_swap
         sources/validation.c
         sources/rolling.c)
 
+target_link_libraries(push_swap
+        "ft"
+        )
+
+
 add_executable(checker
         sources/checker.c
         sources/parser.c
@@ -39,7 +50,13 @@ add_executable(checker
         sources/ft_sort_helper.c
         sources/positions.c
         sources/rolling.c
-        sources/validation.c)
+        sources/validation.c
+        sources/visual.c)
 
-target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)
-target_link_libraries(checker ${CMAKE_SOURCE_DIR}/libft/libft.a)
+
+target_link_libraries(checker
+        "ft"
+        "mlx"
+        "-framework OpenGL"
+        "-framework AppKit"
+        )
