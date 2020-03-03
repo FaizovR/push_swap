@@ -25,10 +25,9 @@ void	ft_parser(int ac, char **av)
 
 	i = 0;
 	if (ft_strcmp(*(av + 1), "-v") == 0)
-		i++;
-	while (++i < ac)
 	{
-//		printf("%s\n", av[i]);
-		ft_is_valid_str(av[i]);
+		i++;
 	}
+	while (++i < ac)
+		ft_is_valid_str(av[i]);
 }

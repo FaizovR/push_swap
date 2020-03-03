@@ -27,4 +27,5 @@ void	stack_init(t_stack *stacks)
 	stacks->max = 0;
 	stacks->stack_b = NULL;
 	stacks->stack_a = NULL;
+	stacks->v_flag = 0;
 }
