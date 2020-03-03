@@ -4,18 +4,16 @@ NAME_CH = checker
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -O3
-LIBRARIES = -lft -L$(LIBFT_DIRECTORY)
-#  -lmlx -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
-INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS)
-# -I$(MINILIBX_HEADERS)
+LIBRARIES = -lft -L$(LIBFT_DIRECTORY) -lmlx -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
+INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
 LIBFT = $(LIBFT_DIRECTORY)libft.a
 LIBFT_DIRECTORY = ./libft/
 LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
 
-# MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
-# MINILIBX_DIRECTORY = ./minilibx_macos/
-# MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
+MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
+MINILIBX_DIRECTORY = ./minilibx_macos/
+MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = push_swap.h\
 # 	error_message.h\
@@ -37,6 +35,7 @@ SOURCES_LIST = ft_lst_size.c\
 	rolling.c\
 	sort_3_or_5.c\
 	validation.c\
+	visual.c\
 
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
@@ -96,9 +95,9 @@ $(LIBFT):
 	@echo "$(NAME_PS): $(GREEN)creating $(LIBFT)...$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY)
 
-# $(MINILIBX):
-# 	@echo "$(NAME_PS): $(GREEN)Creating $(MINILIBX)...$(RESET)"
-# 	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
+$(MINILIBX):
+	@echo "$(NAME_PS): $(GREEN)Creating $(MINILIBX)...$(RESET)"
+	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean

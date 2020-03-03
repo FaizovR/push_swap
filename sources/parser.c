@@ -1,4 +1,5 @@
 #include "../includes/push_swap.h"
+#include <stdio.h>
 
 void	ft_is_valid_str(const char *str)
 {
@@ -23,6 +24,11 @@ void	ft_parser(int ac, char **av)
 	int	i;
 
 	i = 0;
+	if (ft_strcmp(*(av + 1), "-v") == 0)
+		i++;
 	while (++i < ac)
+	{
+//		printf("%s\n", av[i]);
 		ft_is_valid_str(av[i]);
+	}
 }
