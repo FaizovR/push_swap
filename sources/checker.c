@@ -32,7 +32,7 @@ int		is_flag(char *string)
 int			main(int ac, char **av)
 {
 	t_stack	stacks;
-	t_data			data;
+	t_data	data;
 
 	stack_init(&stacks);
 	if (ac == 1)

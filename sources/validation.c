@@ -21,13 +21,15 @@ void		ft_overflow_argument(const char *str, t_stack *stacks)
 void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 {
 	int		i;
+	int		index;
 	int		temp;
 	char	**str_arr;
 
 	i = 0;
-	if (ac == 2)
+	index = (stacks->v_flag) ? 2 : 1;
+	if ((ac == 2 && !stacks->v_flag) || (ac == 3 && stacks->v_flag))
 	{
-		str_arr = ft_strsplit(av[1], ' ');
+		str_arr = ft_strsplit(av[index], ' ');
 		while (str_arr[i])
 		{
 			ft_overflow_argument(str_arr[i], stacks);
@@ -35,7 +37,9 @@ void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 			ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 			i++;
 		}
+		return ;
 	}
+	i = (stacks->v_flag) ? 2 : 1;
 	while (++i < ac)
 	{
 		ft_overflow_argument(av[i], stacks);

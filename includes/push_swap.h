@@ -15,6 +15,7 @@ typedef struct	s_stack
 	t_list		*stack_b;
 	int			max;
 	int			min;
+	int			v_flag;
 }				t_stack;
 
 typedef struct	s_insert
