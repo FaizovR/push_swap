@@ -91,13 +91,13 @@ float		get_col_width(t_list *stack_a)
 	return (col_width);
 }
 
-void	draw_stack(t_data *data, t_list *stack, t_point *start_p)
+void	draw_stack(t_data *data, t_list *stack, t_point *start_p, int color)
 {
 	if (!stack)
 		return;
 	while (stack)
 	{
-		draw_rectangle(data, *start_p, data->col_width, stack->content_size * data->col_height, 0x7a0000);
+		draw_rectangle(data, *start_p, data->col_width, stack->content_size * data->col_height, color);
 		start_p->x += data->col_width;
 		stack = stack->next;
 	}
@@ -198,8 +198,8 @@ int		draw(t_data *data)
 		draw_frame(data);
 		init_point(&point,51,599);
 		init_point(&point2,  51, 1199);
-		draw_stack(data, data->stacks->stack_a, &point);
-		draw_stack(data, data->stacks->stack_b, &point2);
+		draw_stack(data, data->stacks->stack_a, &point, 0x7a0000);
+		draw_stack(data, data->stacks->stack_b, &point2, 0xe8e413);
 		data->oper = data->oper->next;
 	}
 	else
