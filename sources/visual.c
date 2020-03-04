@@ -143,13 +143,6 @@ void	indexing(t_list **stack_a, int size)
 		}
 		tmp = tmp->next;
 	}
-
-	tmp = *stack_a;
-	while (tmp)
-	{
-		printf("%zu ", tmp->content_size);
-		tmp = tmp->next;
-	}
 }
 
 
