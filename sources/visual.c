@@ -80,7 +80,7 @@ float		get_col_height(t_stack *stacks)
 	float	col_height;
 
 	col_height = W_STACK_HEIGHT / ft_lst_size(stacks->stack_a);
-	return col_height;
+	return (col_height);
 }
 
 float		get_col_width(t_stack *stacks)
@@ -88,14 +88,69 @@ float		get_col_width(t_stack *stacks)
 	float	col_width;
 
 	col_width = W_STACK_WIDTH / ft_lst_size(stacks->stack_a);
-	return  col_width;
+	return (col_width);
 }
 
 //void	draw_stack(t_data *data, t_list *stack, float x_start, float y_start)
 //{
 //
 //}
+void	indexing(t_list **stack_a, int size)
+{
+	t_list *tmp;
+	int ar[size];
+	int i;
+	int j;
+	int t;
 
+	i = 0;
+	tmp = *stack_a;
+	while(i < size)
+	{
+		ar[i] = *(int *)tmp->content;
+		i++;
+		tmp = tmp->next;
+	}
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if (ar[i] < ar[j])
+			{
+				t = ar[i];
+				ar[i] = ar[j];
+				ar[j] = t;
+			}
+			j++;
+		}
+		i++;
+	}
+
+	tmp = *stack_a;
+	while (tmp)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (ar[i] == *(int *)tmp->content)
+			{
+				tmp->content_size = i + 1;
+			}
+			i++;
+		}
+		tmp = tmp->next;
+	}
+
+	tmp = *stack_a;
+	while (tmp)
+	{
+		printf("%zu ", tmp->content_size);
+		tmp = tmp->next;
+	}
+}
 
 
 int		deal_key(int key, t_data *data)
@@ -137,7 +192,8 @@ int		visual(t_data *data, t_stack *stacks)
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	draw_frame(data);
 	(void)stacks;
-	draw_rectangle(data, 50, 600, 1100, 550);
+//	draw_rectangle(data, 50, 600, 1100, 550);
+	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
 	mlx_loop(data->mlx_ptr);
 
 	return (EXIT_SUCCESS);
