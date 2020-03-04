@@ -9,7 +9,7 @@
 
 typedef struct		s_point
 {
-	float				x;
+	float			x;
 	float			y;
 }					t_point;
 
@@ -19,6 +19,7 @@ typedef struct		s_data
 	void 			*win_ptr;
 }					t_data;
 
-int		visual(t_data *data);
+int		visual(t_data *data, t_stack *stacks);
 void	init_data(t_data *data);
+
 #endif

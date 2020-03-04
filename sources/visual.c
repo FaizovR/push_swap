@@ -42,7 +42,7 @@ void	draw_line(t_point *point1, t_point *point2, int color, t_data *data)
 	}
 }
 
-void	draw_box(t_point point, t_data *data, int width, int height, int color)
+void	draw_box(t_point point, t_data *data, float width, float height, int color)
 {
 	t_point point2;
 
@@ -59,11 +59,35 @@ void	draw_box(t_point point, t_data *data, int width, int height, int color)
 	draw_line(&point2, &point, color, data);
 }
 
-void	draw_rectangle(t_data *data, float x, float y, int width, int height)
+void	draw_rectangle(t_data *data, float x, float y, float width, float height)
 {
-	while (x <= width)
+	int i;
+	t_point p1;
+	t_point p2;
 
+	i = 0;
+	while (i <= height)
+	{
+		init_point(&p1, x, y - i);
+		init_point(&p2, x + width, y - i);
+		draw_line(&p1, &p2, 0x7a0000, data);
+		i++;
+	}
 }
+
+//float	get_col_height(t_stack *stacks)
+//{
+//	float col_height;
+//
+////	col_height = (int)(ft_lst_size(stacks->stack_a));
+//}
+
+//void	draw_stack(t_data *data, t_list *stack, float x_start, float y_start)
+//{
+//
+//}
+
+
 
 int		deal_key(int key, t_data *data)
 {
@@ -75,11 +99,10 @@ int		deal_key(int key, t_data *data)
 	return (0);
 }
 
-void	draw_frame(t_data *data)
+void		draw_frame(t_data *data)
 {
-	t_point p1;
-	t_point p2;
-
+	t_point	p1;
+	t_point	p2;
 
 	init_point(&p1, 1200, 0);
 	init_point(&p2, 1200, W_HEIGHT);
@@ -92,11 +115,11 @@ void	draw_frame(t_data *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 15, 0xffffff, "Stack A");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 515, 0xffffff, "Stack B");
 
-	init_point(&p2, 50, 550);
-	draw_box(p2, data, 1100, 450, 0xffffff);
+	init_point(&p2,50,550);
+	draw_box(p2, data,1100,450,0xffffff);
 }
 
-int		visual(t_data *data)
+int		visual(t_data *data, t_stack *stacks)
 {
 	if ((data->mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
@@ -104,6 +127,9 @@ int		visual(t_data *data)
 		return (EXIT_FAILURE);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	draw_frame(data);
+	(void)stacks;
+	draw_rectangle(data, 50, 500, 1, 250);
 	mlx_loop(data->mlx_ptr);
+
 	return (EXIT_SUCCESS);
 }

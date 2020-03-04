@@ -44,7 +44,7 @@ int			main(int ac, char **av)
 		ft_reverse_stack(&stacks);
 		ft_has_duplicate(&stacks);
 		init_data(&data);
-		visual(&data);
+		visual(&data, &stacks);
 		read_instructions(&stacks);
 	}
 	else {
