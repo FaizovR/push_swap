@@ -4,8 +4,10 @@
 #include "mlx.h"
 #include "push_swap.h"
 
-# define W_WIDTH 1300
-# define W_HEIGHT 1050
+# define W_WIDTH 1400
+# define W_HEIGHT 1250
+# define W_STACK_HEIGHT 550
+# define W_STACK_WIDTH 1100
 
 typedef struct		s_point
 {

@@ -22,11 +22,11 @@ void	init_point(t_point *point, float x, float y)
 	point->y = y;
 }
 
-void	draw_line(t_point *point1, t_point *point2, int color, t_data *data)
+void		draw_line(t_point *point1, t_point *point2, int color, t_data *data)
 {
-	float x_step;
-	float y_step;
-	float max;
+	float	x_step;
+	float	y_step;
+	float	max;
 
 	x_step = point2->x - point1->x;
 	y_step = point2->y - point1->y;
@@ -42,9 +42,9 @@ void	draw_line(t_point *point1, t_point *point2, int color, t_data *data)
 	}
 }
 
-void	draw_box(t_point point, t_data *data, float width, float height, int color)
+void		draw_box(t_point point, t_data *data, float width, float height, int color)
 {
-	t_point point2;
+	t_point	point2;
 
 	init_point(&point2, point.x + width, point.y);
 	draw_line(&point, &point2, color, data);
@@ -59,11 +59,11 @@ void	draw_box(t_point point, t_data *data, float width, float height, int color)
 	draw_line(&point2, &point, color, data);
 }
 
-void	draw_rectangle(t_data *data, float x, float y, float width, float height)
+void		draw_rectangle(t_data *data, float x, float y, float width, float height)
 {
-	int i;
-	t_point p1;
-	t_point p2;
+	int		i;
+	t_point	p1;
+	t_point	p2;
 
 	i = 0;
 	while (i <= height)
@@ -75,12 +75,21 @@ void	draw_rectangle(t_data *data, float x, float y, float width, float height)
 	}
 }
 
-//float	get_col_height(t_stack *stacks)
-//{
-//	float col_height;
-//
-////	col_height = (int)(ft_lst_size(stacks->stack_a));
-//}
+float		get_col_height(t_stack *stacks)
+{
+	float	col_height;
+
+	col_height = W_STACK_HEIGHT / ft_lst_size(stacks->stack_a);
+	return col_height;
+}
+
+float		get_col_width(t_stack *stacks)
+{
+	float	col_width;
+
+	col_width = W_STACK_WIDTH / ft_lst_size(stacks->stack_a);
+	return  col_width;
+}
 
 //void	draw_stack(t_data *data, t_list *stack, float x_start, float y_start)
 //{
@@ -110,13 +119,13 @@ void		draw_frame(t_data *data)
 	draw_line(&p1, &p2, 0xffffff, data);
 
 	init_point(&p1, 50, 50);
-	draw_box(p1, data, 1100, 450, 0xffffff);
+	draw_box(p1, data, 1100, 550, 0xffffff);
 
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 15, 0xffffff, "Stack A");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 515, 0xffffff, "Stack B");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 615, 0xffffff, "Stack B");
 
-	init_point(&p2,50,550);
-	draw_box(p2, data,1100,450,0xffffff);
+	init_point(&p2,50,650);
+	draw_box(p2, data,1100,550,0xffffff);
 }
 
 int		visual(t_data *data, t_stack *stacks)
@@ -128,7 +137,7 @@ int		visual(t_data *data, t_stack *stacks)
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	draw_frame(data);
 	(void)stacks;
-	draw_rectangle(data, 50, 500, 1, 250);
+	draw_rectangle(data, 50, 600, 1100, 550);
 	mlx_loop(data->mlx_ptr);
 
 	return (EXIT_SUCCESS);
