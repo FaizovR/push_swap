@@ -39,13 +39,13 @@ int			main(int ac, char **av)
 		return (0);
 	if (ac >= 2 && is_flag(*(av + 1)))
 	{
+		stacks.v_flag = 1;
 		ft_parser(ac, av);
 		ft_add_to_stack(ac, av, &stacks);
 		ft_reverse_stack(&stacks);
 		ft_has_duplicate(&stacks);
 		init_data(&data);
 		visual(&data, &stacks);
-		read_instructions(&stacks);
 	}
 	else {
 		ft_parser(ac, av);

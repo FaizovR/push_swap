@@ -59,7 +59,7 @@ void		draw_box(t_point point, t_data *data, float width, float height, int color
 	draw_line(&point2, &point, color, data);
 }
 
-void		draw_rectangle(t_data *data, float x, float y, float width, float height)
+void		draw_rectangle(t_data *data, t_point start_p, float width, float height, int color)
 {
 	int		i;
 	t_point	p1;
@@ -68,33 +68,41 @@ void		draw_rectangle(t_data *data, float x, float y, float width, float height)
 	i = 0;
 	while (i <= height)
 	{
-		init_point(&p1, x, y - i);
-		init_point(&p2, x + width, y - i);
-		draw_line(&p1, &p2, 0x7a0000, data);
+		init_point(&p1, start_p.x, start_p.y - i);
+		init_point(&p2, start_p.x + width, start_p.y - i);
+		draw_line(&p1, &p2, color, data);
 		i++;
 	}
 }
 
-float		get_col_height(t_stack *stacks)
+float		get_col_height(t_list *stack_a)
 {
 	float	col_height;
 
-	col_height = W_STACK_HEIGHT / ft_lst_size(stacks->stack_a);
+	col_height = (W_STACK_HEIGHT - 2) / ft_lst_size(stack_a);
 	return (col_height);
 }
 
-float		get_col_width(t_stack *stacks)
+float		get_col_width(t_list *stack_a)
 {
 	float	col_width;
 
-	col_width = W_STACK_WIDTH / ft_lst_size(stacks->stack_a);
+	col_width = (W_STACK_WIDTH - 2)/ ft_lst_size(stack_a);
 	return (col_width);
 }
 
-//void	draw_stack(t_data *data, t_list *stack, float x_start, float y_start)
-//{
-//
-//}
+void	draw_stack(t_data *data, t_list *stack, t_point *start_p)
+{
+	if (!stack)
+		return;
+	while (stack)
+	{
+		draw_rectangle(data, *start_p, data->col_width, stack->content_size * data->col_height, 0x7a0000);
+		start_p->x += data->col_width;
+		stack = stack->next;
+	}
+}
+
 void	indexing(t_list **stack_a, int size)
 {
 	t_list *tmp;
@@ -176,18 +184,97 @@ void		draw_frame(t_data *data)
 	draw_box(p2, data,1100,550,0xffffff);
 }
 
+int		draw(t_data *data)
+{
+	t_point		point;
+	t_point		point2;
+	t_list		*temp;
+	temp = data->oper;
+	if (temp)
+	{
+		ft_instruction_checker(&data->stacks->stack_a, &data->stacks->stack_b, (char *)temp->content);
+//		printf("%s\n", (char *)temp->content);
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
+		draw_frame(data);
+		init_point(&point,51,599);
+		init_point(&point2,  51, 1199);
+		draw_stack(data, data->stacks->stack_a, &point);
+		draw_stack(data, data->stacks->stack_b, &point2);
+		data->oper = data->oper->next;
+	}
+	else
+	{
+		mlx_loop_hook(data->mlx_ptr, NULL, data);
+	}
+
+	return (0);
+}
+
+void		ft_reverse_list(t_list **list)
+{
+	t_list	*current;
+	t_list	*next;
+	t_list	*prev;
+
+	prev = NULL;
+	next = NULL;
+	current = *list;
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*list = prev;
+}
+
+void ft_print_list (t_list *list)
+{
+	t_list *node;
+	int i = 0;
+	node = list;
+//	printf("\n===================Stack_a========================\n");
+	while (node != NULL)
+	{
+		printf("line %d = |%s|\n", i, (char*)node->content);
+		i++;
+		node = node->next;
+	}
+}
+
+void		read_instructions_v(t_data *data, t_stack *stacks)
+{
+	char	*line;
+
+	line = NULL;
+	(void)stacks;
+	while (get_next_line(0, &line))
+	{
+		ft_lstadd(&data->oper, ft_lstnew(line, sizeof(line)));
+		free(line);
+	}
+//	ft_print_list(data->oper);
+	ft_reverse_list(&data->oper);
+//	ft_print_list(data->oper);
+}
+
 int		visual(t_data *data, t_stack *stacks)
 {
+	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
+	data->col_height = (int)get_col_height(stacks->stack_a);
+	data->col_width = (int)get_col_width(stacks->stack_a);
+	data->oper = NULL;
+	read_instructions_v(data, stacks);
+	data->stacks = stacks;
 	if ((data->mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
 	if ((data->win_ptr = mlx_new_window(data->mlx_ptr, W_WIDTH, W_HEIGHT, "Checker")) == NULL)
 		return (EXIT_FAILURE);
-	mlx_key_hook(data->win_ptr, deal_key, data);
-	draw_frame(data);
-	(void)stacks;
-//	draw_rectangle(data, 50, 600, 1100, 550);
-	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
-	mlx_loop(data->mlx_ptr);
+//	ft_print_list(data->oper);
 
+	mlx_loop_hook(data->mlx_ptr, draw, data);
+	mlx_key_hook(data->win_ptr, deal_key, data);
+	mlx_loop(data->mlx_ptr);
 	return (EXIT_SUCCESS);
 }
