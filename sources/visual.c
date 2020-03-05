@@ -159,29 +159,62 @@ int		deal_key(int key, t_data *data)
 	if (key == 53)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		ft_lstdel(&data->stacks->stack_a, &del);
+		ft_lstdel(&data->stacks->stack_b, &del);
+		ft_lstdel(&data->opers, &del);
+		ft_lstdel(&data->oper, &del);
 		exit(0);
 	}
 	return (0);
 }
 
+//void	print_oper(t_data *data, t_list *start, int x, int y)
+//{
+//	if (start && start->next)
+//		print_oper(data, start->next, x, y + 40);
+//	if (start && start->next && !start->next->next)
+//		mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xe8e413, (char *)start->next->content);
+//	else if (start && start->next && y < W_HEIGHT)
+//	{
+//		mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xffffff, (char *)start->next->content);
+//	}
+//}
+
 void		draw_frame(t_data *data)
 {
 	t_point	p1;
 	t_point	p2;
+	char *str;
 
+	str = ft_itoa(++data->oper_iter);
 	init_point(&p1, 1200, 0);
 	init_point(&p2, 1200, W_HEIGHT);
-
 	draw_line(&p1, &p2, 0xffffff, data);
-
 	init_point(&p1, 50, 50);
 	draw_box(p1, data, 1100, 550, 0xffffff);
-
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 15, 0xffffff, "Stack A");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 615, 0xffffff, "Stack B");
-
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 1230, 15, 0xffffff, "Operations: ");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 1350, 15, 0xffffff, str);
 	init_point(&p2,50,650);
 	draw_box(p2, data,1100,550,0xffffff);
+	ft_strdel(&str);
+}
+
+void	print_instruction(t_data *data, t_list *list)
+{
+	float x = W_WIDTH - 120;
+	float y = 40;
+
+	while (list->content && y < W_HEIGHT - 20)
+	{
+		mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0x1ab000, (char *)list->content);
+		y += 40;
+		if (list->next)
+			list = list->next;
+		else
+			break;
+	}
 }
 
 int		draw(t_data *data)
@@ -193,19 +226,23 @@ int		draw(t_data *data)
 	if (temp)
 	{
 		ft_instruction_checker(&data->stacks->stack_a, &data->stacks->stack_b, (char *)temp->content);
+		ft_lstadd(&data->opers, ft_lstnew((char *)temp->content, sizeof((char *)temp->content)));
 //		printf("%s\n", (char *)temp->content);
 		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		draw_frame(data);
 		init_point(&point,51,599);
-		init_point(&point2,  51, 1199);
+		init_point(&point2,51,1199);
 		draw_stack(data, data->stacks->stack_a, &point, 0x7a0000);
 		draw_stack(data, data->stacks->stack_b, &point2, 0xe8e413);
+		print_instruction(data, data->opers);
 		data->oper = data->oper->next;
 	}
 	else
 	{
 		mlx_loop_hook(data->mlx_ptr, NULL, data);
+		exit(0);
 	}
+
 
 	return (0);
 }
@@ -243,6 +280,14 @@ void ft_print_list (t_list *list)
 	}
 }
 
+void 	is_oper(t_stack *stacks, char *name)
+{
+	if (ft_strcmp(name, "sa") && ft_strcmp(name, "pa") && ft_strcmp(name, "ra") && ft_strcmp(name, "rra") \
+	&& ft_strcmp(name, "sb") && ft_strcmp(name, "pb") && ft_strcmp(name, "rb") && ft_strcmp(name, "rrb") \
+	&& ft_strcmp(name, "ss") && ft_strcmp(name, "rr") && ft_strcmp(name, "rrr"))
+		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
+}
+
 void		read_instructions_v(t_data *data, t_stack *stacks)
 {
 	char	*line;
@@ -251,19 +296,20 @@ void		read_instructions_v(t_data *data, t_stack *stacks)
 	(void)stacks;
 	while (get_next_line(0, &line))
 	{
+		is_oper(stacks, line);
 		ft_lstadd(&data->oper, ft_lstnew(line, sizeof(line)));
 		free(line);
 	}
-//	ft_print_list(data->oper);
 	ft_reverse_list(&data->oper);
-//	ft_print_list(data->oper);
 }
 
 int		visual(t_data *data, t_stack *stacks)
 {
+	data->opers = NULL;
 	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
 	data->col_height = (int)get_col_height(stacks->stack_a);
 	data->col_width = (int)get_col_width(stacks->stack_a);
+	data->oper_iter = 0;
 	data->oper = NULL;
 	read_instructions_v(data, stacks);
 	data->stacks = stacks;
@@ -271,7 +317,6 @@ int		visual(t_data *data, t_stack *stacks)
 		return (EXIT_FAILURE);
 	if ((data->win_ptr = mlx_new_window(data->mlx_ptr, W_WIDTH, W_HEIGHT, "Checker")) == NULL)
 		return (EXIT_FAILURE);
-//	ft_print_list(data->oper);
 
 	mlx_loop_hook(data->mlx_ptr, draw, data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
