@@ -1,125 +1,32 @@
 #include "../includes/visual.h"
 
-void	init_data(t_data *data)
+void	init_data(t_data *data, t_stack *stacks)
 {
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
+	data->opers = NULL;
+	data->stacks = stacks;
+	data->col_height = (int)get_col_height(stacks->stack_a);
+	data->col_width = (int)get_col_width(stacks->stack_a);
+	data->oper_iter = 0;
+	data->oper = NULL;
 }
 
-float	max_vs(float a, float b)
+void		indexing(t_list **stack_a, int size)
 {
-	return (a > b) ? a : b;
-}
-
-float	abs_vs(float num)
-{
-	return (num < 0) ? -num : num;
-}
-
-void	init_point(t_point *point, float x, float y)
-{
-	point->x = x;
-	point->y = y;
-}
-
-void		draw_line(t_point *point1, t_point *point2, int color, t_data *data)
-{
-	float	x_step;
-	float	y_step;
-	float	max;
-
-	x_step = point2->x - point1->x;
-	y_step = point2->y - point1->y;
-
-	max = max_vs(abs_vs(x_step), abs_vs(y_step));
-	x_step /= max;
-	y_step /= max;
-	while ((int)(point1->x - point2->x) || (int)(point1->y - point2->y))
-	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, (int)point1->x, (int)point1->y, color);
-		point1->x += x_step;
-		point1->y += y_step;
-	}
-}
-
-void		draw_box(t_point point, t_data *data, float width, float height, int color)
-{
-	t_point	point2;
-
-	init_point(&point2, point.x + width, point.y);
-	draw_line(&point, &point2, color, data);
-
-	init_point(&point, point2.x, point2.y + height);
-	draw_line(&point2, &point, color, data);
-
-	init_point(&point2, point.x - width, point.y);
-	draw_line(&point, &point2, color, data);
-
-	init_point(&point2, point.x, point.y - height);
-	draw_line(&point2, &point, color, data);
-}
-
-void		draw_rectangle(t_data *data, t_point start_p, float width, float height, int color)
-{
+	t_list	*tmp;
+	int		ar[size];
 	int		i;
-	t_point	p1;
-	t_point	p2;
-
-	i = 0;
-	while (i <= height)
-	{
-		init_point(&p1, start_p.x, start_p.y - i);
-		init_point(&p2, start_p.x + width, start_p.y - i);
-		draw_line(&p1, &p2, color, data);
-		i++;
-	}
-}
-
-float		get_col_height(t_list *stack_a)
-{
-	float	col_height;
-
-	col_height = (W_STACK_HEIGHT - 2) / ft_lst_size(stack_a);
-	return (col_height);
-}
-
-float		get_col_width(t_list *stack_a)
-{
-	float	col_width;
-
-	col_width = (W_STACK_WIDTH - 2)/ ft_lst_size(stack_a);
-	return (col_width);
-}
-
-void	draw_stack(t_data *data, t_list *stack, t_point *start_p, int color)
-{
-	if (!stack)
-		return;
-	while (stack)
-	{
-		draw_rectangle(data, *start_p, data->col_width, stack->content_size * data->col_height, color);
-		start_p->x += data->col_width;
-		stack = stack->next;
-	}
-}
-
-void	indexing(t_list **stack_a, int size)
-{
-	t_list *tmp;
-	int ar[size];
-	int i;
-	int j;
-	int t;
+	int		j;
+	int		t;
 
 	i = 0;
 	tmp = *stack_a;
 	while(i < size)
 	{
-		ar[i] = *(int *)tmp->content;
-		i++;
+		ar[i++] = *(int *)tmp->content;
 		tmp = tmp->next;
 	}
-
 	i = 0;
 	while (i < size)
 	{
@@ -136,7 +43,6 @@ void	indexing(t_list **stack_a, int size)
 		}
 		i++;
 	}
-
 	tmp = *stack_a;
 	while (tmp)
 	{
@@ -144,9 +50,7 @@ void	indexing(t_list **stack_a, int size)
 		while (i < size)
 		{
 			if (ar[i] == *(int *)tmp->content)
-			{
 				tmp->content_size = i + 1;
-			}
 			i++;
 		}
 		tmp = tmp->next;
@@ -180,146 +84,25 @@ int		deal_key(int key, t_data *data)
 //	}
 //}
 
-void		draw_frame(t_data *data)
-{
-	t_point	p1;
-	t_point	p2;
-	char *str;
-
-	str = ft_itoa(++data->oper_iter);
-	init_point(&p1, 1200, 0);
-	init_point(&p2, 1200, W_HEIGHT);
-	draw_line(&p1, &p2, 0xffffff, data);
-	init_point(&p1, 50, 50);
-	draw_box(p1, data, 1100, 550, 0xffffff);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 15, 0xffffff, "Stack A");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 550, 615, 0xffffff, "Stack B");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 1230, 15, 0xffffff, "Operations: ");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 1350, 15, 0xffffff, str);
-	init_point(&p2,50,650);
-	draw_box(p2, data,1100,550,0xffffff);
-	ft_strdel(&str);
-}
-
-void	print_instruction(t_data *data, t_list *list)
-{
-	float x = W_WIDTH - 120;
-	float y = 40;
-
-	while (list->content && y < W_HEIGHT - 20)
-	{
-		mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0x1ab000, (char *)list->content);
-		y += 40;
-		if (list->next)
-			list = list->next;
-		else
-			break;
-	}
-}
-
-int		draw(t_data *data)
-{
-	t_point		point;
-	t_point		point2;
-	t_list		*temp;
-	temp = data->oper;
-	if (temp)
-	{
-		ft_instruction_checker(&data->stacks->stack_a, &data->stacks->stack_b, (char *)temp->content);
-		ft_lstadd(&data->opers, ft_lstnew((char *)temp->content, sizeof((char *)temp->content)));
-//		printf("%s\n", (char *)temp->content);
-		mlx_clear_window(data->mlx_ptr, data->win_ptr);
-		draw_frame(data);
-		init_point(&point,51,599);
-		init_point(&point2,51,1199);
-		draw_stack(data, data->stacks->stack_a, &point, 0x7a0000);
-		draw_stack(data, data->stacks->stack_b, &point2, 0xe8e413);
-		print_instruction(data, data->opers);
-		data->oper = data->oper->next;
-	}
-	else
-	{
-		mlx_loop_hook(data->mlx_ptr, NULL, data);
-		exit(0);
-	}
 
 
-	return (0);
-}
 
-void		ft_reverse_list(t_list **list)
-{
-	t_list	*current;
-	t_list	*next;
-	t_list	*prev;
-
-	prev = NULL;
-	next = NULL;
-	current = *list;
-	while (current != NULL)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-	*list = prev;
-}
-
-void ft_print_list (t_list *list)
-{
-	t_list *node;
-	int i = 0;
-	node = list;
-//	printf("\n===================Stack_a========================\n");
-	while (node != NULL)
-	{
-		printf("line %d = |%s|\n", i, (char*)node->content);
-		i++;
-		node = node->next;
-	}
-}
-
-void 	is_oper(t_stack *stacks, char *name)
-{
-	if (ft_strcmp(name, "sa") && ft_strcmp(name, "pa") && ft_strcmp(name, "ra") && ft_strcmp(name, "rra") \
-	&& ft_strcmp(name, "sb") && ft_strcmp(name, "pb") && ft_strcmp(name, "rb") && ft_strcmp(name, "rrb") \
-	&& ft_strcmp(name, "ss") && ft_strcmp(name, "rr") && ft_strcmp(name, "rrr"))
-		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
-}
-
-void		read_instructions_v(t_data *data, t_stack *stacks)
-{
-	char	*line;
-
-	line = NULL;
-	(void)stacks;
-	while (get_next_line(0, &line))
-	{
-		is_oper(stacks, line);
-		ft_lstadd(&data->oper, ft_lstnew(line, sizeof(line)));
-		free(line);
-	}
-	ft_reverse_list(&data->oper);
-}
 
 int		visual(t_data *data, t_stack *stacks)
 {
-	data->opers = NULL;
 	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
-	data->col_height = (int)get_col_height(stacks->stack_a);
-	data->col_width = (int)get_col_width(stacks->stack_a);
-	data->oper_iter = 0;
-	data->oper = NULL;
 	read_instructions_v(data, stacks);
-	data->stacks = stacks;
 	if ((data->mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
 	if ((data->win_ptr = mlx_new_window(data->mlx_ptr, W_WIDTH, W_HEIGHT, "Checker")) == NULL)
 		return (EXIT_FAILURE);
-
 	mlx_loop_hook(data->mlx_ptr, draw, data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
+	ft_lstdel(&data->stacks->stack_a, &del);
+	ft_lstdel(&data->stacks->stack_b, &del);
+	ft_lstdel(&data->opers, &del);
+	ft_lstdel(&data->oper, &del);
+	free(data);
 	return (EXIT_SUCCESS);
 }

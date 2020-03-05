@@ -80,7 +80,7 @@ void		ft_has_duplicate(t_stack *stacks)
 		while (tmp != NULL)
 		{
 			if (*(int*)node->content == *(int*)tmp->content)
-				ft_handle_error(stacks->stack_a, stacks->stack_b);
+				ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 			tmp = tmp->next;
 		}
 		node = node->next;

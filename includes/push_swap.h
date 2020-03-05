@@ -101,5 +101,5 @@ void			count_again(t_insert *insert, t_stack stacks, t_res *temp);
 void			final_r(t_stack *stack);
 void			push_to_a(t_stack *stacks, t_insert *tmp);
 void			rotate_a(t_stack *stacks, int n_ra, int n_rra);
-
+void			ft_reverse_list(t_list **list);
 #endif

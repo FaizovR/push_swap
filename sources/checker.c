@@ -13,9 +13,7 @@ void		read_instructions(t_stack *stacks)
 	char	*line;
 
 	while (get_next_line(0, &line))
-	{
 		ft_instruction_checker(&stacks->stack_a, &stacks->stack_b, line);
-	}
 	if (ft_is_sorted(stacks->stack_a) && ft_lst_is_empty(stacks->stack_b))
 		ft_putstr("OK\n");
 	else
@@ -44,7 +42,7 @@ int			main(int ac, char **av)
 		ft_add_to_stack(ac, av, &stacks);
 		ft_reverse_stack(&stacks);
 		ft_has_duplicate(&stacks);
-		init_data(&data);
+		init_data(&data, &stacks);
 		visual(&data, &stacks);
 	}
 	else {

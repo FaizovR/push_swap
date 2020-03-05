@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(push_swap)
 
-add_compile_options(-Wall -Wextra -Werror)
+add_compile_options(-Wall -Wextra -Werror -g)
 set(CMAKE_C_STANDARD 99)
 
 include_directories(
@@ -51,7 +51,12 @@ add_executable(checker
         sources/positions.c
         sources/rolling.c
         sources/validation.c
-        sources/visual.c)
+        sources/visual.c
+        sources/draw_utils.c
+        sources/draw_utils2.c
+        sources/draw_utils3.c
+        sources/ft_reverse_list.c
+        )
 
 
 target_link_libraries(checker
