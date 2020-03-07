@@ -59,6 +59,8 @@ void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 		temp = ft_atoi(av[i]);
 		ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 	}
+	if (!stacks->stack_a)
+		ft_handle_error();
 }
 
 void		ft_reverse_stack(t_stack *stacks)

@@ -102,4 +102,7 @@ void			final_r(t_stack *stack);
 void			push_to_a(t_stack *stacks, t_insert *tmp);
 void			rotate_a(t_stack *stacks, int n_ra, int n_rra);
 void			ft_reverse_list(t_list **list);
+void			ft_clear_stack(t_list *node);
+void			ft_clear_str_stack(t_list *node);
+
 #endif

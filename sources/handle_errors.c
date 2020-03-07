@@ -1,3 +1,4 @@
+#include <visual.h>
 #include "../includes/push_swap.h"
 
 void	ft_handle_error(void)
@@ -8,8 +9,10 @@ void	ft_handle_error(void)
 
 void	ft_handle_error_lst(t_list *stack_a, t_list *stack_b)
 {
-	ft_lstdel(&stack_a, &del);
-	ft_lstdel(&stack_b, &del);
+//	ft_lstdel(&stack_a, &del);
+//	ft_lstdel(&stack_b, &del);
+	ft_clear_stack(stack_a);
+	ft_clear_stack(stack_b);
 	ft_putstr("Error\n");
 	exit(0);
 }
