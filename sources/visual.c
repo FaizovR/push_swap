@@ -84,10 +84,6 @@ int		deal_key(int key, t_data *data)
 //	}
 //}
 
-
-
-
-
 int		visual(t_data *data, t_stack *stacks)
 {
 	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
@@ -99,10 +95,5 @@ int		visual(t_data *data, t_stack *stacks)
 	mlx_loop_hook(data->mlx_ptr, draw, data);
 	mlx_key_hook(data->win_ptr, deal_key, data);
 	mlx_loop(data->mlx_ptr);
-	ft_lstdel(&data->stacks->stack_a, &del);
-	ft_lstdel(&data->stacks->stack_b, &del);
-	ft_lstdel(&data->opers, &del);
-	ft_lstdel(&data->oper, &del);
-	free(data);
 	return (EXIT_SUCCESS);
 }

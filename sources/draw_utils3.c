@@ -41,7 +41,6 @@ int		draw(t_data *data)
 	{
 		ft_instruction_checker(&data->stacks->stack_a, &data->stacks->stack_b, (char *)temp->content);
 		ft_lstadd(&data->opers, ft_lstnew((char *)temp->content, sizeof((char *)temp->content)));
-//		printf("%s\n", (char *)temp->content);
 		mlx_clear_window(data->mlx_ptr, data->win_ptr);
 		draw_frame(data);
 		init_point(&point,51,599);
@@ -54,7 +53,7 @@ int		draw(t_data *data)
 	else
 	{
 		mlx_loop_hook(data->mlx_ptr, NULL, data);
-		exit(0);
+//		exit(0);
 	}
 	return (0);
 }

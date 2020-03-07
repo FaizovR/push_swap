@@ -18,13 +18,24 @@ void		ft_overflow_argument(const char *str, t_stack *stacks)
 	}
 }
 
+void		ft_delete_double_arr(char **arr)
+{
+	int		i;
+
+	if (!arr || !*arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		ft_strdel(&arr[i++]);
+	free(arr);
+}
+
 void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 {
 	int		i;
 	int		index;
 	int		temp;
 	char	**str_arr;
-
 
 	i = 0;
 	index = (stacks->v_flag) ? 2 : 1;
@@ -38,6 +49,7 @@ void		ft_add_to_stack(int ac, char **av, t_stack *stacks)
 			ft_lstadd(&stacks->stack_a, ft_lstnew(&temp, sizeof(int)));
 			i++;
 		}
+		ft_delete_double_arr(str_arr);
 		return ;
 	}
 	i = (stacks->v_flag) ? 2 : 1;

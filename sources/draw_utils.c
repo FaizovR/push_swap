@@ -26,13 +26,10 @@ void		draw_box(t_point point, t_data *data, float width, float height, int color
 
 	init_point(&point2, point.x + width, point.y);
 	draw_line(&point, &point2, color, data);
-
 	init_point(&point, point2.x, point2.y + height);
 	draw_line(&point2, &point, color, data);
-
 	init_point(&point2, point.x - width, point.y);
 	draw_line(&point, &point2, color, data);
-
 	init_point(&point2, point.x, point.y - height);
 	draw_line(&point2, &point, color, data);
 }
