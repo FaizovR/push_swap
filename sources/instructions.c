@@ -56,10 +56,11 @@ void	ft_instruction_checker(t_list **stack_a, t_list **stack_b, char *name)
 		ft_handle_error_lst(*stack_a, *stack_b);
 }
 
-void 	is_oper(t_stack *stacks, char *name)
+void	is_oper(t_stack *stacks, char *name)
 {
-	if (ft_strcmp(name, "sa") && ft_strcmp(name, "pa") && ft_strcmp(name, "ra") && ft_strcmp(name, "rra") \
-	&& ft_strcmp(name, "sb") && ft_strcmp(name, "pb") && ft_strcmp(name, "rb") && ft_strcmp(name, "rrb") \
-	&& ft_strcmp(name, "ss") && ft_strcmp(name, "rr") && ft_strcmp(name, "rrr"))
+	if (ft_strcmp(name, "sa") && ft_strcmp(name, "pa") && ft_strcmp(name, "ra")
+	&& ft_strcmp(name, "rra") && ft_strcmp(name, "sb") && ft_strcmp(name, "pb")
+	&& ft_strcmp(name, "rb") && ft_strcmp(name, "rrb") && ft_strcmp(name, "ss")
+	&& ft_strcmp(name, "rr") && ft_strcmp(name, "rrr"))
 		ft_handle_error_lst(stacks->stack_a, stacks->stack_b);
 }

@@ -36,8 +36,8 @@ float			abs_vs(float num);
 float			max_vs(float a, float b);
 
 void			draw_line(t_point *point1, t_point *point2, int color, t_data *data);
-void			draw_box(t_point point, t_data *data, float width, float height, int color);
-void			draw_rectangle(t_data *data, t_point start_p, float width, float height, int color);
+void			draw_box(t_point point, t_data *data, float w, float d);
+void			draw_rectangle(t_data *data, t_point start_p, float w, float h, int c);
 void			draw_stack(t_data *data, t_list *stack, t_point *start_p, int color);
 void			draw_frame(t_data *data);
 void 			is_oper(t_stack *stacks, char *name);
@@ -45,5 +45,6 @@ void 			is_oper(t_stack *stacks, char *name);
 int				draw(t_data *data);
 void			read_instructions_v(t_data *data, t_stack *stacks);
 void			print_instruction(t_data *data, t_list *list);
+int				is_flag(char *string, t_stack *stacks);
 
 #endif

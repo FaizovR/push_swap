@@ -29,7 +29,9 @@ add_executable(push_swap
         sources/ft_sort_helper.c
         sources/positions.c
         sources/validation.c
-        sources/rolling.c)
+        sources/rolling.c
+        sources/add_to_stack.c
+        sources/ft_clear_stack.c)
 
 target_link_libraries(push_swap
         "ft"
@@ -56,7 +58,8 @@ add_executable(checker
         sources/draw_utils2.c
         sources/draw_utils3.c
         sources/ft_reverse_list.c
-        )
+        sources/add_to_stack.c
+        sources/ft_clear_stack.c)
 
 
 target_link_libraries(checker

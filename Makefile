@@ -1,6 +1,5 @@
 NAME_PS = push_swap
 NAME_CH = checker
-# NAME_VS = visualizer
 
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -O3
@@ -16,15 +15,20 @@ MINILIBX_DIRECTORY = ./minilibx_macos/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_LIST = push_swap.h\
-# 	error_message.h\
-# 	visualizer.h
+	visual.h
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SOURCES_DIRECTORY = ./sources/
-SOURCES_LIST = ft_lst_size.c\
+SOURCES_LIST = add_to_stack.c\
+	draw_utils.c\
+	draw_utils2.c\
+	draw_utils3.c\
+	ft_clear_stack.c\
+	ft_lst_size.c\
 	ft_max_in_lst.c\
 	ft_min_in_lst.c\
+	ft_reverse_list.c\
 	ft_sort.c\
 	ft_sort_helper.c\
 	handle_errors.c\
@@ -39,9 +43,9 @@ SOURCES_LIST = ft_lst_size.c\
 
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
-# SOURCES_LIST_VS = visualizer.c\
-	draw.c\
-	draw_utils.c
+#SOURCES_LIST_VS = visualizer.c\
+#	draw.c\
+#	draw_utils.c
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 SOURCES_PS = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_PS))
 SOURCES_CH = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_CH))
