@@ -43,23 +43,18 @@ SOURCES_LIST = add_to_stack.c\
 
 SOURCES_LIST_PS = push_swap.c
 SOURCES_LIST_CH = checker.c
-#SOURCES_LIST_VS = visualizer.c\
-#	draw.c\
-#	draw_utils.c
+
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 SOURCES_PS = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_PS))
 SOURCES_CH = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_CH))
-# SOURCES_VS = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST_VS))
 
 OBJECTS_DIRECTORY = objects/
 OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
 OBJECTS_LIST_PS = $(patsubst %.c, %.o, $(SOURCES_LIST_PS))
 OBJECTS_LIST_CH = $(patsubst %.c, %.o, $(SOURCES_LIST_CH))
-# OBJECTS_LIST_VS = $(patsubst %.c, %.o, $(SOURCES_LIST_VS))
 OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 OBJECTS_PS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_PS))
 OBJECTS_CH = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_CH))
-# OBJECTS_VS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST_VS))
 
 # COLORS
 
@@ -70,7 +65,6 @@ RESET = \033[0m
 .PHONY: all clean fclean re
 
 all: $(NAME_PS) $(NAME_CH)
-# $(NAME_VS)
 
 $(NAME_PS): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_PS)
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_PS) -o $(NAME_PS)
@@ -81,11 +75,6 @@ $(NAME_CH): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_CH)
 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_CH) -o $(NAME_CH)
 	@echo "\n$(NAME_PS): $(GREEN)$(NAME_CH) object files were created$(RESET)"
 	@echo "$(NAME_PS): $(GREEN)$(NAME_CH) was created$(RESET)"
-
-# $(NAME_VS): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS) $(OBJECTS_VS)
-# 	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) $(OBJECTS_VS) -o $(NAME_VS)
-# 	@echo "\n$(NAME_PS): $(GREEN)$(NAME_VS) object files were created$(RESET)"
-# 	@echo "$(NAME_PS): $(GREEN)$(NAME_VS) was created$(RESET)"
 
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
@@ -105,13 +94,11 @@ $(MINILIBX):
 
 clean:
 	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-# 	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
 	@rm -rf $(OBJECTS_DIRECTORY)
 	@echo "$(NAME_PS): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
 	@echo "$(NAME_PS): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
-# 	@rm -f $(MINILIBX)
 	@echo "$(NAME_PS): $(RED)$(MINILIBX) was deleted$(RESET)"
 	@rm -f $(LIBFT)
 	@echo "$(NAME_PS): $(RED)$(LIBFT) was deleted$(RESET)"
@@ -119,8 +106,6 @@ fclean: clean
 	@echo "$(NAME_PS): $(RED)$(NAME_PS) was deleted$(RESET)"
 	@rm -f $(NAME_CH)
 	@echo "$(NAME_PS): $(RED)$(NAME_CH) was deleted$(RESET)"
-# 	@rm -f $(NAME_VS)
-	@echo "$(NAME_PS): $(RED)$(NAME_VS) was deleted$(RESET)"
 
 re:
 	@$(MAKE) fclean

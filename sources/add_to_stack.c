@@ -18,11 +18,12 @@ void		help1(int ac, char **av, t_stack **stacks)
 	int		i;
 
 	i = ((*stacks)->v_flag) ? 2 : 1;
-	while (++i < ac)
+	while (i < ac)
 	{
 		ft_overflow_argument(av[i], *stacks);
 		temp = ft_atoi(av[i]);
 		ft_lstadd(&(*stacks)->stack_a, ft_lstnew(&temp, sizeof(int)));
+		i++;
 	}
 }
 

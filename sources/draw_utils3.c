@@ -34,6 +34,17 @@ void			print_instruction(t_data *data, t_list *list)
 	}
 }
 
+void			draw_help(t_data *data, t_point *point, t_point *point2)
+{
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	draw_frame(data);
+	init_point(point, 51, 599);
+	init_point(point2, 51, 1199);
+	draw_stack(data, data->stacks->stack_a, point, 0x7a0000);
+	draw_stack(data, data->stacks->stack_b, point2, 0xe8e413);
+	print_instruction(data, data->opers);
+}
+
 int				draw(t_data *data)
 {
 	t_point		point;
@@ -48,13 +59,7 @@ int				draw(t_data *data)
 				(char *)temp->content);
 		ft_lstadd(&data->opers, ft_lstnew((char *)temp->content,
 				sizeof((char *)temp->content)));
-		mlx_clear_window(data->mlx_ptr, data->win_ptr);
-		draw_frame(data);
-		init_point(&point, 51, 599);
-		init_point(&point2, 51, 1199);
-		draw_stack(data, data->stacks->stack_a, &point, 0x7a0000);
-		draw_stack(data, data->stacks->stack_b, &point2, 0xe8e413);
-		print_instruction(data, data->opers);
+		draw_help(data, &point, &point2);
 		tmp = data->oper;
 		data->oper = data->oper->next;
 		free(tmp->content);

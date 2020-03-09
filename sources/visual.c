@@ -1,6 +1,6 @@
 #include "../includes/visual.h"
 
-void	init_data(t_data *data, t_stack *stacks)
+void		init_data(t_data *data, t_stack *stacks)
 {
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
@@ -12,21 +12,12 @@ void	init_data(t_data *data, t_stack *stacks)
 	data->oper_iter = 0;
 }
 
-void		indexing(t_list **stack_a, int size)
+void		indexing_help(int size, int *ar)
 {
-	t_list	*tmp;
-	int		ar[size];
-	int		i;
-	int		j;
-	int		t;
+	int i;
+	int j;
+	int t;
 
-	i = 0;
-	tmp = *stack_a;
-	while (i < size)
-	{
-		ar[i++] = *(int *)tmp->content;
-		tmp = tmp->next;
-	}
 	i = 0;
 	while (i < size)
 	{
@@ -43,6 +34,22 @@ void		indexing(t_list **stack_a, int size)
 		}
 		i++;
 	}
+}
+
+void		indexing(t_list **stack_a, int size)
+{
+	t_list	*tmp;
+	int		ar[size];
+	int		i;
+
+	i = 0;
+	tmp = *stack_a;
+	while (i < size)
+	{
+		ar[i++] = *(int *)tmp->content;
+		tmp = tmp->next;
+	}
+	indexing_help(size, ar);
 	tmp = *stack_a;
 	while (tmp)
 	{
@@ -57,7 +64,7 @@ void		indexing(t_list **stack_a, int size)
 	}
 }
 
-int		deal_key(int key, t_data *data)
+int			deal_key(int key, t_data *data)
 {
 	if (key == 53)
 	{
@@ -71,7 +78,7 @@ int		deal_key(int key, t_data *data)
 	return (0);
 }
 
-int		visual(t_data *data, t_stack *stacks)
+int			visual(t_data *data, t_stack *stacks)
 {
 	indexing(&stacks->stack_a, ft_lst_size(stacks->stack_a));
 	read_instructions_v(data, stacks);

@@ -34,17 +34,17 @@ void		draw_box(t_point point, t_data *data, float w, float d)
 	draw_line(&point2, &point, 0xffffff, data);
 }
 
-void		draw_rectangle(t_data *data, t_point start_p, float w, float h, int c)
+void		draw_rectangle(t_data *data, t_point start_p, t_point *w_h, int c)
 {
 	int		i;
 	t_point	p1;
 	t_point	p2;
 
 	i = 0;
-	while (i <= h)
+	while (i <= w_h->y)
 	{
 		init_point(&p1, start_p.x, start_p.y - i);
-		init_point(&p2, start_p.x + w, start_p.y - i);
+		init_point(&p2, start_p.x + w_h->x, start_p.y - i);
 		draw_line(&p1, &p2, c, data);
 		i++;
 	}
@@ -52,12 +52,15 @@ void		draw_rectangle(t_data *data, t_point start_p, float w, float h, int c)
 
 void		draw_stack(t_data *data, t_list *stack, t_point *start_p, int color)
 {
+	t_point	w_h;
+
 	if (!stack)
 		return ;
 	while (stack)
 	{
-		draw_rectangle(data, *start_p, data->col_width,
-				stack->content_size * data->col_height, color);
+		init_point(&w_h, data->col_width,
+				stack->content_size * data->col_height);
+		draw_rectangle(data, *start_p, &w_h, color);
 		start_p->x += data->col_width;
 		stack = stack->next;
 	}
