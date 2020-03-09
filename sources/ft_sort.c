@@ -38,6 +38,6 @@ void			ft_sort(t_stack *stacks)
 		ft_sort_3(stacks);
 	else if (stack_a_size <= 5)
 		ft_sort_5(stacks);
-	else if (stack_a_size > 5)
+	else
 		ft_insert_sort(stacks);
 }

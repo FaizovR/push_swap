@@ -39,6 +39,21 @@ int		ft_is_sorted(t_list *begin_list)
 	return (1);
 }
 
+void	ft_sort_5_help(t_stack *stacks)
+{
+	if (*(int *)stacks->stack_a->content > stacks->min)
+	{
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
+	}
+	else
+	{
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
+		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
+	}
+}
+
 void	ft_sort_5(t_stack *stacks)
 {
 	if (ft_is_sorted(stacks->stack_a))
@@ -48,7 +63,7 @@ void	ft_sort_5(t_stack *stacks)
 	while (ft_lst_size(stacks->stack_b) < 2)
 	{
 		if (*(int *)stacks->stack_a->content == stacks->min
-		|| *(int *)stacks->stack_a->content == stacks->max)
+			|| *(int *)stacks->stack_a->content == stacks->max)
 			ft_instruction(&stacks->stack_a, &stacks->stack_b, "pb");
 		else
 			ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
@@ -59,8 +74,5 @@ void	ft_sort_5(t_stack *stacks)
 	if (*(int *)stacks->stack_a->content == stacks->max)
 		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
 	else
-	{
-		ft_instruction(&stacks->stack_a, &stacks->stack_b, "sa");
-		ft_instruction(&stacks->stack_a, &stacks->stack_b, "ra");
-	}
+		ft_sort_5_help(stacks);
 }

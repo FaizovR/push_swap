@@ -24,7 +24,7 @@ add_executable(push_swap
         sources/ft_max_in_lst.c
         sources/ft_min_in_lst.c
         sources/ft_lst_size.c
-        sources/sort_3_or_5.c
+        sources/sort3_5.c
         sources/ft_sort.c
         sources/ft_sort_helper.c
         sources/positions.c
@@ -47,7 +47,7 @@ add_executable(checker
         sources/ft_max_in_lst.c
         sources/ft_min_in_lst.c
         sources/ft_lst_size.c
-        sources/sort_3_or_5.c
+        sources/sort3_5.c
         sources/ft_sort.c
         sources/ft_sort_helper.c
         sources/positions.c

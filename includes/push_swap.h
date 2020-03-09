@@ -69,6 +69,7 @@ void			ft_instruction(t_list **stack_a, t_list **stack_b, char *name);
 int				ft_lst_size(t_list *begin_list);
 void			ft_sort_3(t_stack *stacks);
 void			ft_sort_5(t_stack *stacks);
+void			ft_sort_5_help(t_stack *stacks);
 int				ft_max_in_lst(t_list *begin_list);
 int				ft_min_in_lst(t_list *begin_list);
 void			ft_sort(t_stack *stacks);
