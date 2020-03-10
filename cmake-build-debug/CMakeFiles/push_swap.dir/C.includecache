@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ycameron/push_swap/includes/push_swap.h
+../libft/libft.h
+/Users/ycameron/push_swap/libft/libft.h
+unistd.h
+-
+stdio.h
+-
+stdlib.h
+-
+
+/Users/ycameron/push_swap/libft/get_next_line.h
+libft.h
+/Users/ycameron/push_swap/libft/libft.h
+
+/Users/ycameron/push_swap/libft/libft.h
+string.h
+-
+stdlib.h
+-
+get_next_line.h
+/Users/ycameron/push_swap/libft/get_next_line.h
+unistd.h
+-
+
+/Users/ycameron/push_swap/sources/sort3.c
+../includes/push_swap.h
+/Users/ycameron/push_swap/includes/push_swap.h
+

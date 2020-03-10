@@ -1,0 +1,1 @@
+<img src="https://sun9-55.userapi.com/c845219/v845219416/75ef4/_KaBeafQd-s.jpg" width=150>

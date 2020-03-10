@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="push_swap"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="checker">
+				<Option output="/Users/ycameron/push_swap/cmake-build-debug/checker" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ycameron/push_swap/includes"/>
+					<Add directory="/Users/ycameron/push_swap/libft"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 checker"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="checker/fast">
+				<Option output="/Users/ycameron/push_swap/cmake-build-debug/checker" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ycameron/push_swap/includes"/>
+					<Add directory="/Users/ycameron/push_swap/libft"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 checker/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="push_swap">
+				<Option output="/Users/ycameron/push_swap/cmake-build-debug/push_swap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ycameron/push_swap/includes"/>
+					<Add directory="/Users/ycameron/push_swap/libft"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 push_swap"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="push_swap/fast">
+				<Option output="/Users/ycameron/push_swap/cmake-build-debug/push_swap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/ycameron/push_swap/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/ycameron/push_swap/includes"/>
+					<Add directory="/Users/ycameron/push_swap/libft"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 push_swap/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/ycameron/push_swap/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/ycameron/push_swap/sources/add_to_stack.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/checker.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/draw_utils.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/draw_utils2.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/draw_utils3.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_clear_stack.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_lst_size.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_max_in_lst.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_min_in_lst.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_reverse_list.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_sort.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/ft_sort_helper.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/handle_errors.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/instructions.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/operators.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/parser.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/positions.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/push_swap.c">
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/rolling.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/sort3_5.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/validation.c">
+			<Option target="checker"/>
+			<Option target="push_swap"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/sources/visual.c">
+			<Option target="checker"/>
+		</Unit>
+		<Unit filename="/Users/ycameron/push_swap/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
