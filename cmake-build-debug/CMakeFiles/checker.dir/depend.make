@@ -96,10 +96,10 @@ CMakeFiles/checker.dir/sources/rolling.c.o: ../libft/get_next_line.h
 CMakeFiles/checker.dir/sources/rolling.c.o: ../libft/libft.h
 CMakeFiles/checker.dir/sources/rolling.c.o: ../sources/rolling.c
 
-CMakeFiles/checker.dir/sources/sort_3_or_5.c.o: ../includes/push_swap.h
-CMakeFiles/checker.dir/sources/sort_3_or_5.c.o: ../libft/get_next_line.h
-CMakeFiles/checker.dir/sources/sort_3_or_5.c.o: ../libft/libft.h
-CMakeFiles/checker.dir/sources/sort_3_or_5.c.o: ../sources/sort_3_or_5.c
+CMakeFiles/checker.dir/sources/sort3_5.c.o: ../includes/push_swap.h
+CMakeFiles/checker.dir/sources/sort3_5.c.o: ../libft/get_next_line.h
+CMakeFiles/checker.dir/sources/sort3_5.c.o: ../libft/libft.h
+CMakeFiles/checker.dir/sources/sort3_5.c.o: ../sources/sort3_5.c
 
 CMakeFiles/checker.dir/sources/validation.c.o: ../includes/push_swap.h
 CMakeFiles/checker.dir/sources/validation.c.o: ../libft/get_next_line.h

@@ -37,7 +37,7 @@ SOURCES_LIST = add_to_stack.c\
 	parser.c\
 	positions.c\
 	rolling.c\
-	sort_3_or_5.c\
+	sort3_5.c\
 	validation.c\
 	visual.c\
 
@@ -62,7 +62,7 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re force
 
 all: $(NAME_PS) $(NAME_CH)
 
@@ -84,11 +84,11 @@ $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 	@echo "$(GREEN).$(RESET)\c"
 
-$(LIBFT):
+$(LIBFT): force
 	@echo "$(NAME_PS): $(GREEN)creating $(LIBFT)...$(RESET)"
 	@$(MAKE) -sC $(LIBFT_DIRECTORY)
 
-$(MINILIBX):
+$(MINILIBX): force
 	@echo "$(NAME_PS): $(GREEN)Creating $(MINILIBX)...$(RESET)"
 	@$(MAKE) -sC $(MINILIBX_DIRECTORY)
 

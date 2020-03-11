@@ -96,11 +96,11 @@ CMakeFiles/checker.dir/sources/rolling.c.o
  /Users/ycameron/push_swap/libft/get_next_line.h
  /Users/ycameron/push_swap/libft/libft.h
  /Users/ycameron/push_swap/sources/rolling.c
-CMakeFiles/checker.dir/sources/sort_3_or_5.c.o
+CMakeFiles/checker.dir/sources/sort3_5.c.o
  /Users/ycameron/push_swap/includes/push_swap.h
  /Users/ycameron/push_swap/libft/get_next_line.h
  /Users/ycameron/push_swap/libft/libft.h
- /Users/ycameron/push_swap/sources/sort_3_or_5.c
+ /Users/ycameron/push_swap/sources/sort3_5.c
 CMakeFiles/checker.dir/sources/validation.c.o
  /Users/ycameron/push_swap/includes/push_swap.h
  /Users/ycameron/push_swap/libft/get_next_line.h
